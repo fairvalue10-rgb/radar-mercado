@@ -22,6 +22,7 @@ display:flex;
 justify-content:center;
 gap:40px;
 margin-top:40px;
+flex-wrap:wrap;
 }
 
 .card{
@@ -146,25 +147,19 @@ font-weight:bold;
 <div class="titulo">NASDAQ</div>
 
 A
-<div class="barra">
-<div id="nasdaqA" class="a"></div>
-</div>
+<div class="barra"><div id="nasdaqA" class="a"></div></div>
 
 B
-<div class="barra">
-<div id="nasdaqB" class="b"></div>
-</div>
+<div class="barra"><div id="nasdaqB" class="b"></div></div>
 
 <button onclick="toggle('grupoNasdaq')">Ativos</button>
 
 <div id="grupoNasdaq" class="grupo">
-
 <div class="grupoTitulo">Grupo A</div>
 <div id="nasdaqAAtivos"></div>
 
 <div class="grupoTitulo">Grupo B</div>
 <div id="nasdaqBAtivos"></div>
-
 </div>
 
 </div>
@@ -175,25 +170,19 @@ B
 <div class="titulo">WIN FUTURO</div>
 
 A
-<div class="barra">
-<div id="winA" class="a"></div>
-</div>
+<div class="barra"><div id="winA" class="a"></div></div>
 
 B
-<div class="barra">
-<div id="winB" class="b"></div>
-</div>
+<div class="barra"><div id="winB" class="b"></div></div>
 
 <button onclick="toggle('grupoWin')">Ativos</button>
 
 <div id="grupoWin" class="grupo">
-
 <div class="grupoTitulo">Grupo A</div>
 <div id="winAAtivos"></div>
 
 <div class="grupoTitulo">Grupo B</div>
 <div id="winBAtivos"></div>
-
 </div>
 
 </div>
@@ -204,25 +193,42 @@ B
 <div class="titulo">DÓLAR GLOBAL</div>
 
 A
-<div class="barra">
-<div id="dolarA" class="a"></div>
-</div>
+<div class="barra"><div id="dolarA" class="a"></div></div>
 
 B
-<div class="barra">
-<div id="dolarB" class="b"></div>
-</div>
+<div class="barra"><div id="dolarB" class="b"></div></div>
 
 <button onclick="toggle('grupoDolar')">Ativos</button>
 
 <div id="grupoDolar" class="grupo">
-
 <div class="grupoTitulo">Grupo A</div>
 <div id="dolarAAtivos"></div>
 
 <div class="grupoTitulo">Grupo B</div>
 <div id="dolarBAtivos"></div>
+</div>
 
+</div>
+
+<!-- OURO -->
+<div class="card">
+
+<div class="titulo">OURO GLOBAL</div>
+
+A
+<div class="barra"><div id="ouroA" class="a"></div></div>
+
+B
+<div class="barra"><div id="ouroB" class="b"></div></div>
+
+<button onclick="toggle('grupoOuro')">Ativos</button>
+
+<div id="grupoOuro" class="grupo">
+<div class="grupoTitulo">Grupo A</div>
+<div id="ouroAAtivos"></div>
+
+<div class="grupoTitulo">Grupo B</div>
+<div id="ouroBAtivos"></div>
 </div>
 
 </div>
@@ -238,10 +244,9 @@ B
 <div class="disclaimerTitulo">Aviso Importante</div>
 
 O mercado financeiro envolve riscos.  
-Este radar possui caráter **educacional e informativo**, não constituindo recomendação de investimento.
+Este radar possui caráter educacional e informativo.
 
-A ferramenta auxilia na leitura de **força institucional de mercado**.  
-Quando uma barra ultrapassa **70%**, indica possível domínio de fluxo naquele lado.
+Quando uma barra ultrapassa **70%**, pode indicar **domínio de fluxo institucional**.
 
 </div>
 
@@ -251,11 +256,7 @@ function toggle(id){
 
 let el=document.getElementById(id)
 
-if(el.style.display=="block"){
-el.style.display="none"
-}else{
-el.style.display="block"
-}
+el.style.display = el.style.display=="block" ? "none" : "block"
 
 }
 
@@ -268,77 +269,41 @@ function radar(){
 let nasdaqA=Math.floor(Math.random()*100)
 let winA=Math.floor(Math.random()*100)
 let dolarA=Math.floor(Math.random()*100)
+let ouroA=Math.floor(Math.random()*100)
 
 let nasdaqB=100-nasdaqA
 let winB=100-winA
 let dolarB=100-dolarA
+let ouroB=100-ouroA
 
-document.getElementById("nasdaqA").style.width=nasdaqA+"%"
-document.getElementById("nasdaqB").style.width=nasdaqB+"%"
+function barra(id,val){
+document.getElementById(id).style.width=val+"%"
+document.getElementById(id).innerText=val+"%"
+}
 
-document.getElementById("nasdaqA").innerText=nasdaqA+"%"
-document.getElementById("nasdaqB").innerText=nasdaqB+"%"
+barra("nasdaqA",nasdaqA)
+barra("nasdaqB",nasdaqB)
 
-document.getElementById("winA").style.width=winA+"%"
-document.getElementById("winB").style.width=winB+"%"
+barra("winA",winA)
+barra("winB",winB)
 
-document.getElementById("winA").innerText=winA+"%"
-document.getElementById("winB").innerText=winB+"%"
+barra("dolarA",dolarA)
+barra("dolarB",dolarB)
 
-document.getElementById("dolarA").style.width=dolarA+"%"
-document.getElementById("dolarB").style.width=dolarB+"%"
+barra("ouroA",ouroA)
+barra("ouroB",ouroB)
 
-document.getElementById("dolarA").innerText=dolarA+"%"
-document.getElementById("dolarB").innerText=dolarB+"%"
+let nasdaqGrupoA=["NVDA "+seta(),"AAPL "+seta(),"MSFT "+seta(),"AMZN "+seta(),"META "+seta(),"GOOGL "+seta()]
+let nasdaqGrupoB=["DXY "+seta(),"US10Y "+seta(),"VIX "+seta(),"SQQQ "+seta(),"GOLD "+seta()]
 
+let winGrupoA=["VALE3 "+seta(),"PETR4 "+seta(),"ITUB4 "+seta(),"BBDC4 "+seta(),"BBAS3 "+seta()]
+let winGrupoB=["USD/BRL "+seta(),"DXY "+seta(),"US10Y "+seta(),"VIX "+seta()]
 
-let nasdaqGrupoA=[
-"NVDA "+seta(),
-"AAPL "+seta(),
-"MSFT "+seta(),
-"AMZN "+seta(),
-"META "+seta(),
-"GOOGL "+seta()
-]
+let dolarGrupoA=["DXY "+seta(),"US10Y "+seta(),"USDJPY "+seta(),"USDCNY "+seta(),"VIX "+seta()]
+let dolarGrupoB=["NASDAQ "+seta(),"SP500 "+seta(),"EURUSD "+seta(),"GBPUSD "+seta(),"IBOV "+seta()]
 
-let nasdaqGrupoB=[
-"DXY "+seta(),
-"US10Y "+seta(),
-"VIX "+seta(),
-"SQQQ "+seta(),
-"GOLD "+seta()
-]
-
-let winGrupoA=[
-"VALE3 "+seta(),
-"PETR4 "+seta(),
-"ITUB4 "+seta(),
-"BBDC4 "+seta(),
-"BBAS3 "+seta()
-]
-
-let winGrupoB=[
-"USD/BRL "+seta(),
-"DXY "+seta(),
-"US10Y "+seta(),
-"VIX "+seta()
-]
-
-let dolarGrupoA=[
-"DXY "+seta(),
-"US10Y "+seta(),
-"USDJPY "+seta(),
-"USDCNY "+seta(),
-"VIX "+seta()
-]
-
-let dolarGrupoB=[
-"NASDAQ "+seta(),
-"SP500 "+seta(),
-"EURUSD "+seta(),
-"GBPUSD "+seta(),
-"IBOV "+seta()
-]
+let ouroGrupoA=["VIX "+seta(),"TLT "+seta(),"EURUSD "+seta(),"SP500 ↓","NASDAQ ↓"]
+let ouroGrupoB=["DXY "+seta(),"US10Y "+seta(),"SP500 ↑","NASDAQ ↑","BTC "+seta()]
 
 document.getElementById("nasdaqAAtivos").innerHTML=nasdaqGrupoA.join("<br>")
 document.getElementById("nasdaqBAtivos").innerHTML=nasdaqGrupoB.join("<br>")
@@ -348,6 +313,9 @@ document.getElementById("winBAtivos").innerHTML=winGrupoB.join("<br>")
 
 document.getElementById("dolarAAtivos").innerHTML=dolarGrupoA.join("<br>")
 document.getElementById("dolarBAtivos").innerHTML=dolarGrupoB.join("<br>")
+
+document.getElementById("ouroAAtivos").innerHTML=ouroGrupoA.join("<br>")
+document.getElementById("ouroBAtivos").innerHTML=ouroGrupoB.join("<br>")
 
 }
 
