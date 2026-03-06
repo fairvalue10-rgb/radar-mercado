@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Radar Institucional</title>
+
+<style>
+
+body{
+background:#020617;
+color:white;
+font-family:Arial;
+text-align:center;
+}
+
+h1{
+margin-top:30px;
+}
+
+.grid{
+display:flex;
+justify-content:center;
+gap:40px;
+margin-top:40px;
+}
+
+.card{
+background:#0f172a;
+padding:25px;
+border-radius:10px;
+width:260px;
+box-shadow:0 0 15px rgba(0,0,0,0.5);
+}
+
+.titulo{
+font-size:18px;
+margin-bottom:10px;
+color:#22c55e;
+}
+
+.barra{
+height:22px;
+background:#1e293b;
+border-radius:20px;
+overflow:hidden;
+margin-top:8px;
+margin-bottom:12px;
+}
+
+.pro{
+height:100%;
+background:#22c55e;
+width:50%;
+transition:0.5s;
+}
+
+.contra{
+height:100%;
+background:#3b82f6;
+width:50%;
+transition:0.5s;
+}
+
+button{
+margin-top:10px;
+padding:6px 14px;
+background:#2563eb;
+border:none;
+border-radius:6px;
+color:white;
+cursor:pointer;
+}
+
+.ativos{
+margin-top:10px;
+display:none;
+font-size:14px;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>📡 RADAR INSTITUCIONAL DE MERCADOS</h1>
+
+<div class="grid">
+
+<div class="card">
+
+<div class="titulo">NASDAQ</div>
+
+PRO
+<div class="barra">
+<div id="nasdaqPro" class="pro"></div>
+</div>
+
+CONTRA
+<div class="barra">
+<div id="nasdaqContra" class="contra"></div>
+</div>
+
+<button onclick="toggle('ativosNasdaq')">Ativos</button>
+
+<div id="ativosNasdaq" class="ativos"></div>
+
+</div>
+
+
+<div class="card">
+
+<div class="titulo">WIN FUTURO</div>
+
+PRO
+<div class="barra">
+<div id="winPro" class="pro"></div>
+</div>
+
+CONTRA
+<div class="barra">
+<div id="winContra" class="contra"></div>
+</div>
+
+<button onclick="toggle('ativosWin')">Ativos</button>
+
+<div id="ativosWin" class="ativos"></div>
+
+</div>
+
+
+<div class="card">
+
+<div class="titulo">DÓLAR GLOBAL</div>
+
+ALTA
+<div class="barra">
+<div id="dolarAlta" class="pro"></div>
+</div>
+
+BAIXA
+<div class="barra">
+<div id="dolarBaixa" class="contra"></div>
+</div>
+
+<button onclick="toggle('ativosDolar')">Ativos</button>
+
+<div id="ativosDolar" class="ativos"></div>
+
+</div>
+
+</div>
+
+<script>
+
+function toggle(id){
+
+let el=document.getElementById(id)
+
+if(el.style.display=="block"){
+el.style.display="none"
+}else{
+el.style.display="block"
+}
+
+}
+
+function seta(){
+return Math.random()>0.5 ? "↑":"↓"
+}
+
+function radar(){
+
+let nasdaqPro=Math.floor(Math.random()*100)
+let winPro=Math.floor(Math.random()*100)
+let dolarAlta=Math.floor(Math.random()*100)
+
+document.getElementById("nasdaqPro").style.width=nasdaqPro+"%"
+document.getElementById("nasdaqContra").style.width=(100-nasdaqPro)+"%"
+
+document.getElementById("winPro").style.width=winPro+"%"
+document.getElementById("winContra").style.width=(100-winPro)+"%"
+
+document.getElementById("dolarAlta").style.width=dolarAlta+"%"
+document.getElementById("dolarBaixa").style.width=(100-dolarAlta)+"%"
+
+
+
+let nasdaqAtivos=[
+"NVDA "+seta(),
+"AAPL "+seta(),
+"MSFT "+seta(),
+"AMZN "+seta(),
+"GOOGL "+seta(),
+"META "+seta()
+]
+
+let winAtivos=[
+"VALE3 "+seta(),
+"PETR4 "+seta(),
+"ITUB4 "+seta(),
+"BBDC4 "+seta(),
+"BBAS3 "+seta()
+]
+
+let dolarAtivos=[
+"DXY "+seta(),
+"US10Y "+seta(),
+"VIX "+seta(),
+"GOLD "+seta(),
+"USDJPY "+seta()
+]
+
+document.getElementById("ativosNasdaq").innerHTML=nasdaqAtivos.join("<br>")
+document.getElementById("ativosWin").innerHTML=winAtivos.join("<br>")
+document.getElementById("ativosDolar").innerHTML=dolarAtivos.join("<br>")
+
+}
+
+setInterval(radar,2000)
+
+radar()
+
+</script>
+
+</body>
+</html>
