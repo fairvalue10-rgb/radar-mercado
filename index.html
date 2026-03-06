@@ -28,7 +28,7 @@ margin-top:40px;
 background:#0f172a;
 padding:25px;
 border-radius:10px;
-width:260px;
+width:270px;
 box-shadow:0 0 15px rgba(0,0,0,0.5);
 }
 
@@ -39,7 +39,7 @@ color:#22c55e;
 }
 
 .barra{
-height:22px;
+height:24px;
 background:#1e293b;
 border-radius:20px;
 overflow:hidden;
@@ -47,34 +47,88 @@ margin-top:8px;
 margin-bottom:12px;
 }
 
-.pro{
+.a{
 height:100%;
 background:#22c55e;
 width:50%;
 transition:0.5s;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:12px;
+font-weight:bold;
 }
 
-.contra{
+.b{
 height:100%;
 background:#3b82f6;
 width:50%;
 transition:0.5s;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:12px;
+font-weight:bold;
 }
 
 button{
-margin-top:10px;
-padding:6px 14px;
+margin-top:6px;
+padding:5px 12px;
 background:#2563eb;
 border:none;
 border-radius:6px;
 color:white;
 cursor:pointer;
+font-size:12px;
 }
 
-.ativos{
-margin-top:10px;
+.grupo{
+margin-top:12px;
+font-size:13px;
+text-align:left;
+line-height:20px;
 display:none;
+}
+
+.grupoTitulo{
+color:#94a3b8;
+margin-top:6px;
+font-weight:bold;
+}
+
+.disclaimer{
+margin-top:20px;
+font-size:13px;
+color:#94a3b8;
+max-width:900px;
+margin-left:auto;
+margin-right:auto;
+line-height:22px;
+display:none;
+}
+
+.disclaimerTitulo{
+color:#22c55e;
+font-weight:bold;
+margin-bottom:6px;
+}
+
+.footer{
+position:fixed;
+bottom:0;
+left:0;
+width:100%;
+background:#020617;
+border-top:1px solid #1e293b;
+padding:12px;
 font-size:14px;
+color:#94a3b8;
+text-align:center;
+}
+
+.pix{
+color:#22c55e;
+font-weight:bold;
 }
 
 </style>
@@ -86,67 +140,108 @@ font-size:14px;
 
 <div class="grid">
 
+<!-- NASDAQ -->
 <div class="card">
 
 <div class="titulo">NASDAQ</div>
 
-PRO
+A
 <div class="barra">
-<div id="nasdaqPro" class="pro"></div>
+<div id="nasdaqA" class="a"></div>
 </div>
 
-CONTRA
+B
 <div class="barra">
-<div id="nasdaqContra" class="contra"></div>
+<div id="nasdaqB" class="b"></div>
 </div>
 
-<button onclick="toggle('ativosNasdaq')">Ativos</button>
+<button onclick="toggle('grupoNasdaq')">Ativos</button>
 
-<div id="ativosNasdaq" class="ativos"></div>
+<div id="grupoNasdaq" class="grupo">
+
+<div class="grupoTitulo">Grupo A</div>
+<div id="nasdaqAAtivos"></div>
+
+<div class="grupoTitulo">Grupo B</div>
+<div id="nasdaqBAtivos"></div>
 
 </div>
 
+</div>
 
+<!-- WIN -->
 <div class="card">
 
 <div class="titulo">WIN FUTURO</div>
 
-PRO
+A
 <div class="barra">
-<div id="winPro" class="pro"></div>
+<div id="winA" class="a"></div>
 </div>
 
-CONTRA
+B
 <div class="barra">
-<div id="winContra" class="contra"></div>
+<div id="winB" class="b"></div>
 </div>
 
-<button onclick="toggle('ativosWin')">Ativos</button>
+<button onclick="toggle('grupoWin')">Ativos</button>
 
-<div id="ativosWin" class="ativos"></div>
+<div id="grupoWin" class="grupo">
+
+<div class="grupoTitulo">Grupo A</div>
+<div id="winAAtivos"></div>
+
+<div class="grupoTitulo">Grupo B</div>
+<div id="winBAtivos"></div>
 
 </div>
 
+</div>
 
+<!-- DOLAR -->
 <div class="card">
 
 <div class="titulo">DÓLAR GLOBAL</div>
 
-ALTA
+A
 <div class="barra">
-<div id="dolarAlta" class="pro"></div>
+<div id="dolarA" class="a"></div>
 </div>
 
-BAIXA
+B
 <div class="barra">
-<div id="dolarBaixa" class="contra"></div>
+<div id="dolarB" class="b"></div>
 </div>
 
-<button onclick="toggle('ativosDolar')">Ativos</button>
+<button onclick="toggle('grupoDolar')">Ativos</button>
 
-<div id="ativosDolar" class="ativos"></div>
+<div id="grupoDolar" class="grupo">
+
+<div class="grupoTitulo">Grupo A</div>
+<div id="dolarAAtivos"></div>
+
+<div class="grupoTitulo">Grupo B</div>
+<div id="dolarBAtivos"></div>
 
 </div>
+
+</div>
+
+</div>
+
+<br>
+
+<button onclick="toggle('disclaimerBox')">Disclaimer</button>
+
+<div id="disclaimerBox" class="disclaimer">
+
+<div class="disclaimerTitulo">Aviso Importante</div>
+
+O mercado financeiro envolve riscos.  
+Este radar possui caráter **educacional e informativo**, não constituindo recomendação de investimento.
+
+A ferramenta auxilia na leitura de **força institucional de mercado**.  
+Quando uma barra ultrapassa **70%**, indica possível domínio de fluxo naquele lado.
 
 </div>
 
@@ -170,31 +265,51 @@ return Math.random()>0.5 ? "↑":"↓"
 
 function radar(){
 
-let nasdaqPro=Math.floor(Math.random()*100)
-let winPro=Math.floor(Math.random()*100)
-let dolarAlta=Math.floor(Math.random()*100)
+let nasdaqA=Math.floor(Math.random()*100)
+let winA=Math.floor(Math.random()*100)
+let dolarA=Math.floor(Math.random()*100)
 
-document.getElementById("nasdaqPro").style.width=nasdaqPro+"%"
-document.getElementById("nasdaqContra").style.width=(100-nasdaqPro)+"%"
+let nasdaqB=100-nasdaqA
+let winB=100-winA
+let dolarB=100-dolarA
 
-document.getElementById("winPro").style.width=winPro+"%"
-document.getElementById("winContra").style.width=(100-winPro)+"%"
+document.getElementById("nasdaqA").style.width=nasdaqA+"%"
+document.getElementById("nasdaqB").style.width=nasdaqB+"%"
 
-document.getElementById("dolarAlta").style.width=dolarAlta+"%"
-document.getElementById("dolarBaixa").style.width=(100-dolarAlta)+"%"
+document.getElementById("nasdaqA").innerText=nasdaqA+"%"
+document.getElementById("nasdaqB").innerText=nasdaqB+"%"
+
+document.getElementById("winA").style.width=winA+"%"
+document.getElementById("winB").style.width=winB+"%"
+
+document.getElementById("winA").innerText=winA+"%"
+document.getElementById("winB").innerText=winB+"%"
+
+document.getElementById("dolarA").style.width=dolarA+"%"
+document.getElementById("dolarB").style.width=dolarB+"%"
+
+document.getElementById("dolarA").innerText=dolarA+"%"
+document.getElementById("dolarB").innerText=dolarB+"%"
 
 
-
-let nasdaqAtivos=[
+let nasdaqGrupoA=[
 "NVDA "+seta(),
 "AAPL "+seta(),
 "MSFT "+seta(),
 "AMZN "+seta(),
-"GOOGL "+seta(),
-"META "+seta()
+"META "+seta(),
+"GOOGL "+seta()
 ]
 
-let winAtivos=[
+let nasdaqGrupoB=[
+"DXY "+seta(),
+"US10Y "+seta(),
+"VIX "+seta(),
+"SQQQ "+seta(),
+"GOLD "+seta()
+]
+
+let winGrupoA=[
 "VALE3 "+seta(),
 "PETR4 "+seta(),
 "ITUB4 "+seta(),
@@ -202,17 +317,37 @@ let winAtivos=[
 "BBAS3 "+seta()
 ]
 
-let dolarAtivos=[
+let winGrupoB=[
+"USD/BRL "+seta(),
 "DXY "+seta(),
 "US10Y "+seta(),
-"VIX "+seta(),
-"GOLD "+seta(),
-"USDJPY "+seta()
+"VIX "+seta()
 ]
 
-document.getElementById("ativosNasdaq").innerHTML=nasdaqAtivos.join("<br>")
-document.getElementById("ativosWin").innerHTML=winAtivos.join("<br>")
-document.getElementById("ativosDolar").innerHTML=dolarAtivos.join("<br>")
+let dolarGrupoA=[
+"DXY "+seta(),
+"US10Y "+seta(),
+"USDJPY "+seta(),
+"USDCNY "+seta(),
+"VIX "+seta()
+]
+
+let dolarGrupoB=[
+"NASDAQ "+seta(),
+"SP500 "+seta(),
+"EURUSD "+seta(),
+"GBPUSD "+seta(),
+"IBOV "+seta()
+]
+
+document.getElementById("nasdaqAAtivos").innerHTML=nasdaqGrupoA.join("<br>")
+document.getElementById("nasdaqBAtivos").innerHTML=nasdaqGrupoB.join("<br>")
+
+document.getElementById("winAAtivos").innerHTML=winGrupoA.join("<br>")
+document.getElementById("winBAtivos").innerHTML=winGrupoB.join("<br>")
+
+document.getElementById("dolarAAtivos").innerHTML=dolarGrupoA.join("<br>")
+document.getElementById("dolarBAtivos").innerHTML=dolarGrupoB.join("<br>")
 
 }
 
@@ -221,6 +356,14 @@ setInterval(radar,2000)
 radar()
 
 </script>
+
+<div class="footer">
+
+💚 Apoie o Radar Institucional  
+PIX para doação  
+<span class="pix">fairvalue10@gmail.com</span>
+
+</div>
 
 </body>
 </html>
