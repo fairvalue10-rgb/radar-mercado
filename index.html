@@ -15,8 +15,6 @@ font-family:Arial;
 margin:20px;
 }
 
-/* TITULOS */
-
 h1{
 text-align:center;
 margin-bottom:40px;
@@ -27,23 +25,17 @@ margin-top:40px;
 margin-bottom:20px;
 }
 
-/* GRID */
-
 .grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
 gap:20px;
 }
 
-/* BOX */
-
 .box{
 background:#0f172a;
 padding:20px;
 border-radius:8px;
 }
-
-/* LINHAS */
 
 .linha{
 margin:10px 0;
@@ -110,47 +102,25 @@ cursor:pointer;
 background:#334155;
 }
 
-/* TEXTO EXPLICAÇÃO */
+/* LISTA ATIVOS */
 
 .explicacao{
 display:none;
 margin-top:10px;
 font-size:13px;
-color:#cbd5f5;
-line-height:1.5;
+line-height:1.7;
 }
 
-/* PRESSÃO DOLAR */
+/* COR PERCENTUAL */
 
-.mini-linha{
-display:flex;
-align-items:center;
-gap:10px;
-margin:8px 0;
-}
-
-.mini-bar{
-flex:1;
-height:8px;
-background:#1e293b;
-border-radius:3px;
-}
-
-.mini-fill{
-height:100%;
-background:#3b82f6;
-border-radius:3px;
-}
-
-/* RISCO */
-
-.risco{
-height:26px;
-background:#22c55e;
-text-align:center;
-line-height:26px;
+.posi{
+color:#22c55e;
 font-weight:bold;
-border-radius:4px;
+}
+
+.nega{
+color:#ef4444;
+font-weight:bold;
 }
 
 </style>
@@ -162,8 +132,6 @@ border-radius:4px;
 <h1>📡 RADAR INSTITUCIONAL DE MERCADOS</h1>
 
 <div class="grid">
-
-<!-- NASDAQ -->
 
 <div class="box">
 
@@ -179,18 +147,16 @@ B
 
 <div id="nasdaq" class="explicacao">
 
-NVDA ↑<br>
-AAPL ↑<br>
-MSFT ↑<br>
-AMZN ↓<br>
-DXY ↑<br>
-US10Y ↑
+NVDA <span class="posi">+1.32%</span><br>
+AAPL <span class="posi">+0.84%</span><br>
+MSFT <span class="posi">+0.66%</span><br>
+AMZN <span class="nega">-0.45%</span><br>
+DXY <span class="posi">+0.28%</span><br>
+US10Y <span class="posi">+0.14%</span>
 
 </div>
 
 </div>
-
-<!-- WIN -->
 
 <div class="box">
 
@@ -206,16 +172,14 @@ B
 
 <div id="win" class="explicacao">
 
-VALE3 ↑<br>
-PETR4 ↑<br>
-ITUB4 ↓<br>
-USD/BRL ↑
+VALE3 <span class="posi">+1.15%</span><br>
+PETR4 <span class="posi">+0.92%</span><br>
+ITUB4 <span class="nega">-0.34%</span><br>
+USD/BRL <span class="posi">+0.51%</span>
 
 </div>
 
 </div>
-
-<!-- DOLAR -->
 
 <div class="box">
 
@@ -231,16 +195,14 @@ B
 
 <div id="dolar" class="explicacao">
 
-DXY ↑<br>
-US10Y ↑<br>
-USDJPY ↑<br>
-NASDAQ ↓
+DXY <span class="posi">+0.40%</span><br>
+US10Y <span class="posi">+0.22%</span><br>
+USDJPY <span class="posi">+0.35%</span><br>
+NASDAQ <span class="nega">-0.90%</span>
 
 </div>
 
 </div>
-
-<!-- OURO -->
 
 <div class="box">
 
@@ -256,10 +218,10 @@ B
 
 <div id="ouro" class="explicacao">
 
-VIX ↑<br>
-TLT ↑<br>
-SP500 ↓<br>
-DXY ↑
+VIX <span class="posi">+2.10%</span><br>
+TLT <span class="posi">+0.73%</span><br>
+SP500 <span class="nega">-0.64%</span><br>
+DXY <span class="posi">+0.30%</span>
 
 </div>
 
@@ -283,11 +245,11 @@ Américas
 
 <div id="america" class="explicacao">
 
-S&P500<br>
-Nasdaq<br>
-Dow Jones<br>
-Russell 2000<br>
-Ibovespa
+S&P500 <span class="nega">-0.84%</span><br>
+Nasdaq <span class="nega">-1.12%</span><br>
+Dow Jones <span class="nega">-0.55%</span><br>
+Russell 2000 <span class="nega">-1.02%</span><br>
+Ibovespa <span class="nega">-0.48%</span>
 
 </div>
 
@@ -301,10 +263,10 @@ Europa
 
 <div id="europa" class="explicacao">
 
-DAX<br>
-CAC 40<br>
-FTSE 100<br>
-EuroStoxx
+DAX <span class="posi">+0.71%</span><br>
+CAC 40 <span class="posi">+0.52%</span><br>
+FTSE 100 <span class="posi">+0.44%</span><br>
+EuroStoxx <span class="posi">+0.60%</span>
 
 </div>
 
@@ -318,10 +280,10 @@ EuroStoxx
 
 <div id="asia" class="explicacao">
 
-Nikkei<br>
-Hang Seng<br>
-Shanghai<br>
-Kospi
+Nikkei <span class="nega">-0.35%</span><br>
+Hang Seng <span class="nega">-0.80%</span><br>
+Shanghai <span class="posi">+0.12%</span><br>
+Kospi <span class="nega">-0.44%</span>
 
 </div>
 
@@ -335,11 +297,11 @@ Commodities
 
 <div id="commodities" class="explicacao">
 
-Petróleo WTI<br>
-Ouro<br>
-Prata<br>
-Cobre<br>
-Soja
+Petróleo WTI <span class="posi">+1.22%</span><br>
+Ouro <span class="posi">+0.84%</span><br>
+Prata <span class="posi">+0.55%</span><br>
+Cobre <span class="nega">-0.22%</span><br>
+Soja <span class="posi">+0.34%</span>
 
 </div>
 
@@ -353,78 +315,14 @@ Crypto
 
 <div id="crypto" class="explicacao">
 
-Bitcoin<br>
-Ethereum<br>
-Solana<br>
-BNB
+Bitcoin <span class="posi">+3.10%</span><br>
+Ethereum <span class="posi">+2.45%</span><br>
+Solana <span class="posi">+4.02%</span><br>
+BNB <span class="posi">+1.20%</span>
 
 </div>
 
 </div>
-
-</div>
-
-<div class="box">
-
-<h3>PRESSÃO DO DÓLAR</h3>
-
-<div class="mini-linha">
-DXY
-<div class="mini-bar">
-<div class="mini-fill" style="width:80%"></div>
-</div>
-+0.8
-</div>
-
-<div class="mini-linha">
-USD/BRL
-<div class="mini-bar">
-<div class="mini-fill" style="width:70%"></div>
-</div>
-+0.7
-</div>
-
-<div class="mini-linha">
-USD/MXN
-<div class="mini-bar">
-<div class="mini-fill" style="width:60%"></div>
-</div>
-+0.6
-</div>
-
-</div>
-
-</div>
-
-<br>
-
-<div class="box">
-
-<h3>INDICADOR DE RISCO GLOBAL</h3>
-
-<div class="risco" style="width:72%">
-RISK ON 72%
-</div>
-
-<button class="botao" onclick="toggle('risco')">Mostrar explicação</button>
-
-<div id="risco" class="explicacao">
-
-O indicador mede o apetite por risco do mercado mundial.
-
-Combina ativos como:
-
-S&P500  
-Nasdaq  
-Russell 2000  
-Bitcoin  
-Ouro  
-DXY
-
-70-100 → Risk ON  
-50-70 → Mercado saudável  
-30-50 → Cautela  
-0-30 → Stress financeiro
 
 </div>
 
