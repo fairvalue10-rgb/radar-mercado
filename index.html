@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
+
 <meta charset="UTF-8">
-<title>Radar Institucional</title>
+<title>Radar Institucional Global</title>
 
 <style>
 
@@ -10,8 +12,7 @@ body{
 background:#020617;
 color:white;
 font-family:Arial;
-margin:0;
-padding:20px;
+margin:20px;
 }
 
 /* TITULOS */
@@ -22,44 +23,51 @@ margin-bottom:40px;
 }
 
 h2{
-margin-bottom:15px;
+margin-top:40px;
+margin-bottom:20px;
 }
 
-/* CONTAINER */
+/* GRID */
 
-.container{
-max-width:1400px;
-margin:auto;
-}
-
-/* GRID RADAR INSTITUCIONAL */
-
-.gridRadar{
+.grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:25px;
-margin-bottom:50px;
+gap:20px;
 }
 
-/* CARD */
+/* BOX */
 
-.card{
+.box{
 background:#0f172a;
-padding:25px;
-border-radius:10px;
-box-shadow:0 0 15px rgba(0,0,0,0.4);
+padding:20px;
+border-radius:8px;
 }
 
-.titulo{
-font-size:18px;
-margin-bottom:10px;
-color:#22c55e;
+/* LINHAS */
+
+.linha{
+margin:10px 0;
 }
 
 /* BARRAS */
 
 .barra{
-height:24px;
+height:14px;
+border-radius:4px;
+}
+
+.pos{
+background:#22c55e;
+}
+
+.neg{
+background:#ef4444;
+}
+
+/* RADAR INSTITUCIONAL */
+
+.barraCard{
+height:22px;
 background:#1e293b;
 border-radius:20px;
 overflow:hidden;
@@ -88,64 +96,31 @@ font-weight:bold;
 
 /* BOTÕES */
 
-button{
-margin-top:6px;
-padding:6px 12px;
-background:#2563eb;
-border:none;
-border-radius:6px;
+.botao{
+margin-top:8px;
+background:#1e293b;
 color:white;
+border:none;
+padding:6px 10px;
+border-radius:4px;
 cursor:pointer;
-font-size:12px;
 }
 
-/* LISTAS */
+.botao:hover{
+background:#334155;
+}
 
-.grupo{
+/* TEXTO EXPLICAÇÃO */
+
+.explicacao{
+display:none;
 margin-top:10px;
 font-size:13px;
-line-height:20px;
-display:none;
-text-align:left;
+color:#cbd5f5;
+line-height:1.5;
 }
 
-.grupoTitulo{
-color:#94a3b8;
-font-weight:bold;
-margin-top:6px;
-}
-
-/* RADAR GLOBAL */
-
-.gridGlobal{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:20px;
-margin-bottom:40px;
-}
-
-.box{
-background:#0f172a;
-padding:20px;
-border-radius:8px;
-}
-
-.linha{
-margin:10px 0;
-}
-
-.barraGlobal{
-height:14px;
-border-radius:4px;
-background:#22c55e;
-margin-top:4px;
-}
-
-.neg{
-background:#ef4444;
-}
-
-/* PRESSÃO DO DÓLAR */
+/* PRESSÃO DOLAR */
 
 .mini-linha{
 display:flex;
@@ -167,7 +142,7 @@ background:#3b82f6;
 border-radius:3px;
 }
 
-/* RISCO GLOBAL */
+/* RISCO */
 
 .risco{
 height:26px;
@@ -178,151 +153,123 @@ font-weight:bold;
 border-radius:4px;
 }
 
-/* EXPLICAÇÃO */
-
-.explicacao{
-display:none;
-margin-top:10px;
-font-size:13px;
-color:#cbd5f5;
-line-height:1.5;
-}
-
-/* DISCLAIMER */
-
-.disclaimer{
-margin-top:30px;
-font-size:13px;
-color:#94a3b8;
-text-align:center;
-display:none;
-}
-
-/* FOOTER */
-
-.footer{
-margin-top:60px;
-text-align:center;
-color:#94a3b8;
-}
-
-.pix{
-color:#22c55e;
-font-weight:bold;
-}
-
 </style>
+
 </head>
 
 <body>
 
-<div class="container">
-
 <h1>📡 RADAR INSTITUCIONAL DE MERCADOS</h1>
 
-<!-- RADAR INSTITUCIONAL -->
-
-<div class="gridRadar">
+<div class="grid">
 
 <!-- NASDAQ -->
 
-<div class="card">
-<div class="titulo">NASDAQ</div>
+<div class="box">
+
+<b>NASDAQ</b>
 
 A
-<div class="barra"><div id="nasdaqA" class="a"></div></div>
+<div class="barraCard"><div class="a" style="width:8%">8%</div></div>
 
 B
-<div class="barra"><div id="nasdaqB" class="b"></div></div>
+<div class="barraCard"><div class="b" style="width:92%">92%</div></div>
 
-<button onclick="toggle('grupoNasdaq')">Ativos</button>
+<button class="botao" onclick="toggle('nasdaq')">Mostrar ativos</button>
 
-<div id="grupoNasdaq" class="grupo">
-<div class="grupoTitulo">Grupo A</div>
-<div id="nasdaqAAtivos"></div>
+<div id="nasdaq" class="explicacao">
 
-<div class="grupoTitulo">Grupo B</div>
-<div id="nasdaqBAtivos"></div>
+NVDA ↑<br>
+AAPL ↑<br>
+MSFT ↑<br>
+AMZN ↓<br>
+DXY ↑<br>
+US10Y ↑
+
 </div>
 
 </div>
 
 <!-- WIN -->
 
-<div class="card">
-<div class="titulo">WIN FUTURO</div>
+<div class="box">
+
+<b>WIN FUTURO</b>
 
 A
-<div class="barra"><div id="winA" class="a"></div></div>
+<div class="barraCard"><div class="a" style="width:83%">83%</div></div>
 
 B
-<div class="barra"><div id="winB" class="b"></div></div>
+<div class="barraCard"><div class="b" style="width:17%">17%</div></div>
 
-<button onclick="toggle('grupoWin')">Ativos</button>
+<button class="botao" onclick="toggle('win')">Mostrar ativos</button>
 
-<div id="grupoWin" class="grupo">
-<div class="grupoTitulo">Grupo A</div>
-<div id="winAAtivos"></div>
+<div id="win" class="explicacao">
 
-<div class="grupoTitulo">Grupo B</div>
-<div id="winBAtivos"></div>
+VALE3 ↑<br>
+PETR4 ↑<br>
+ITUB4 ↓<br>
+USD/BRL ↑
+
 </div>
 
 </div>
 
-<!-- DÓLAR -->
+<!-- DOLAR -->
 
-<div class="card">
-<div class="titulo">DÓLAR GLOBAL</div>
+<div class="box">
+
+<b>DÓLAR GLOBAL</b>
 
 A
-<div class="barra"><div id="dolarA" class="a"></div></div>
+<div class="barraCard"><div class="a" style="width:15%">15%</div></div>
 
 B
-<div class="barra"><div id="dolarB" class="b"></div></div>
+<div class="barraCard"><div class="b" style="width:85%">85%</div></div>
 
-<button onclick="toggle('grupoDolar')">Ativos</button>
+<button class="botao" onclick="toggle('dolar')">Mostrar ativos</button>
 
-<div id="grupoDolar" class="grupo">
-<div class="grupoTitulo">Grupo A</div>
-<div id="dolarAAtivos"></div>
+<div id="dolar" class="explicacao">
 
-<div class="grupoTitulo">Grupo B</div>
-<div id="dolarBAtivos"></div>
+DXY ↑<br>
+US10Y ↑<br>
+USDJPY ↑<br>
+NASDAQ ↓
+
 </div>
 
 </div>
 
 <!-- OURO -->
 
-<div class="card">
-<div class="titulo">OURO GLOBAL</div>
+<div class="box">
+
+<b>OURO GLOBAL</b>
 
 A
-<div class="barra"><div id="ouroA" class="a"></div></div>
+<div class="barraCard"><div class="a" style="width:42%">42%</div></div>
 
 B
-<div class="barra"><div id="ouroB" class="b"></div></div>
+<div class="barraCard"><div class="b" style="width:58%">58%</div></div>
 
-<button onclick="toggle('grupoOuro')">Ativos</button>
+<button class="botao" onclick="toggle('ouro')">Mostrar ativos</button>
 
-<div id="grupoOuro" class="grupo">
-<div class="grupoTitulo">Grupo A</div>
-<div id="ouroAAtivos"></div>
+<div id="ouro" class="explicacao">
 
-<div class="grupoTitulo">Grupo B</div>
-<div id="ouroBAtivos"></div>
-</div>
-
-</div>
+VIX ↑<br>
+TLT ↑<br>
+SP500 ↓<br>
+DXY ↑
 
 </div>
 
-<!-- RADAR GLOBAL -->
+</div>
+
+</div>
 
 <h2>🌎 RADAR GLOBAL DE MERCADO</h2>
 
-<div class="gridGlobal">
+<div class="grid">
 
 <div class="box">
 
@@ -330,31 +277,92 @@ B
 
 <div class="linha">
 Américas
-<div class="barraGlobal neg" style="width:40%"></div>
+<div class="barra neg" style="width:40%"></div>
+
+<button class="botao" onclick="toggle('america')">Mostrar ativos</button>
+
+<div id="america" class="explicacao">
+
+S&P500<br>
+Nasdaq<br>
+Dow Jones<br>
+Russell 2000<br>
+Ibovespa
+
+</div>
+
 </div>
 
 <div class="linha">
 Europa
-<div class="barraGlobal" style="width:65%"></div>
+<div class="barra pos" style="width:65%"></div>
+
+<button class="botao" onclick="toggle('europa')">Mostrar ativos</button>
+
+<div id="europa" class="explicacao">
+
+DAX<br>
+CAC 40<br>
+FTSE 100<br>
+EuroStoxx
+
+</div>
+
 </div>
 
 <div class="linha">
 Ásia
-<div class="barraGlobal neg" style="width:35%"></div>
+<div class="barra neg" style="width:35%"></div>
+
+<button class="botao" onclick="toggle('asia')">Mostrar ativos</button>
+
+<div id="asia" class="explicacao">
+
+Nikkei<br>
+Hang Seng<br>
+Shanghai<br>
+Kospi
+
+</div>
+
 </div>
 
 <div class="linha">
 Commodities
-<div class="barraGlobal" style="width:75%"></div>
+<div class="barra pos" style="width:75%"></div>
+
+<button class="botao" onclick="toggle('commodities')">Mostrar ativos</button>
+
+<div id="commodities" class="explicacao">
+
+Petróleo WTI<br>
+Ouro<br>
+Prata<br>
+Cobre<br>
+Soja
+
+</div>
+
 </div>
 
 <div class="linha">
 Crypto
-<div class="barraGlobal" style="width:90%"></div>
-</div>
+<div class="barra pos" style="width:90%"></div>
+
+<button class="botao" onclick="toggle('crypto')">Mostrar ativos</button>
+
+<div id="crypto" class="explicacao">
+
+Bitcoin<br>
+Ethereum<br>
+Solana<br>
+BNB
 
 </div>
 
+</div>
+
+</div>
 
 <div class="box">
 
@@ -362,19 +370,25 @@ Crypto
 
 <div class="mini-linha">
 DXY
-<div class="mini-bar"><div class="mini-fill" style="width:80%"></div></div>
+<div class="mini-bar">
+<div class="mini-fill" style="width:80%"></div>
+</div>
 +0.8
 </div>
 
 <div class="mini-linha">
 USD/BRL
-<div class="mini-bar"><div class="mini-fill" style="width:70%"></div></div>
+<div class="mini-bar">
+<div class="mini-fill" style="width:70%"></div>
+</div>
 +0.7
 </div>
 
 <div class="mini-linha">
 USD/MXN
-<div class="mini-bar"><div class="mini-fill" style="width:60%"></div></div>
+<div class="mini-bar">
+<div class="mini-fill" style="width:60%"></div>
+</div>
 +0.6
 </div>
 
@@ -382,7 +396,7 @@ USD/MXN
 
 </div>
 
-<!-- INDICADOR DE RISCO -->
+<br>
 
 <div class="box">
 
@@ -392,20 +406,20 @@ USD/MXN
 RISK ON 72%
 </div>
 
-<button onclick="toggle('riscoExp')">Mostrar explicação</button>
+<button class="botao" onclick="toggle('risco')">Mostrar explicação</button>
 
-<div id="riscoExp" class="explicacao">
+<div id="risco" class="explicacao">
 
-O indicador mede o apetite por risco no mercado mundial.
+O indicador mede o apetite por risco do mercado mundial.
 
 Combina ativos como:
 
-• S&P500  
-• Nasdaq  
-• Russell 2000  
-• Bitcoin  
-• Ouro  
-• Índice do Dólar
+S&P500  
+Nasdaq  
+Russell 2000  
+Bitcoin  
+Ouro  
+DXY
 
 70-100 → Risk ON  
 50-70 → Mercado saudável  
@@ -416,78 +430,25 @@ Combina ativos como:
 
 </div>
 
-<br>
-
-<button onclick="toggle('disclaimer')">Disclaimer</button>
-
-<div id="disclaimer" class="disclaimer">
-Conteúdo educacional. Não constitui recomendação de investimento.
-</div>
-
-</div>
-
 <script>
 
 function toggle(id){
 
-let el=document.getElementById(id)
+var x=document.getElementById(id);
 
-el.style.display = el.style.display=="block" ? "none":"block"
+if(x.style.display==="none"||x.style.display===""){
 
-}
+x.style.display="block";
 
-function seta(){
-return Math.random()>0.5 ? "↑":"↓"
-}
+}else{
 
-function barra(id,val){
-document.getElementById(id).style.width=val+"%"
-document.getElementById(id).innerText=val+"%"
-}
-
-function radar(){
-
-let nasdaqA=Math.floor(Math.random()*100)
-let winA=Math.floor(Math.random()*100)
-let dolarA=Math.floor(Math.random()*100)
-let ouroA=Math.floor(Math.random()*100)
-
-barra("nasdaqA",nasdaqA)
-barra("nasdaqB",100-nasdaqA)
-
-barra("winA",winA)
-barra("winB",100-winA)
-
-barra("dolarA",dolarA)
-barra("dolarB",100-dolarA)
-
-barra("ouroA",ouroA)
-barra("ouroB",100-ouroA)
-
-document.getElementById("nasdaqAAtivos").innerHTML=["NVDA "+seta(),"AAPL "+seta(),"MSFT "+seta(),"AMZN "+seta()].join("<br>")
-document.getElementById("nasdaqBAtivos").innerHTML=["DXY "+seta(),"US10Y "+seta(),"VIX "+seta()].join("<br>")
-
-document.getElementById("winAAtivos").innerHTML=["VALE3 "+seta(),"PETR4 "+seta(),"ITUB4 "+seta()].join("<br>")
-document.getElementById("winBAtivos").innerHTML=["USD/BRL "+seta(),"DXY "+seta()].join("<br>")
-
-document.getElementById("dolarAAtivos").innerHTML=["DXY "+seta(),"US10Y "+seta(),"USDJPY "+seta()].join("<br>")
-document.getElementById("dolarBAtivos").innerHTML=["NASDAQ "+seta(),"SP500 "+seta()].join("<br>")
-
-document.getElementById("ouroAAtivos").innerHTML=["VIX "+seta(),"TLT "+seta()].join("<br>")
-document.getElementById("ouroBAtivos").innerHTML=["DXY "+seta(),"SP500 "+seta()].join("<br>")
+x.style.display="none";
 
 }
 
-setInterval(radar,2000)
-
-radar()
+}
 
 </script>
-
-<div class="footer">
-💚 Apoie o Radar Institucional<br>
-PIX: <span class="pix">fairvalue10@gmail.com</span>
-</div>
 
 </body>
 </html>
