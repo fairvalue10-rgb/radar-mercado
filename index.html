@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
-
 <meta charset="UTF-8">
-<title>Radar Institucional Global</title>
+<title>Radar Institucional de Mercados</title>
 
 <style>
 
@@ -12,313 +10,379 @@ body{
 background:#020617;
 color:white;
 font-family:Arial;
-margin:20px;
+margin:0;
 }
+
+/* TITULOS */
 
 h1{
 text-align:center;
+margin-top:40px;
 margin-bottom:40px;
 }
 
 h2{
-margin-top:40px;
-margin-bottom:20px;
+margin-bottom:30px;
 }
 
-.grid{
+/* PAINEL MACRO */
+
+.macro{
+padding:30px;
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:20px;
 }
 
-.box{
+.macrocard{
 background:#0f172a;
 padding:20px;
-border-radius:8px;
+border-radius:10px;
 }
 
-.linha{
-margin:10px 0;
-}
-
-/* BARRAS */
-
-.barra{
-height:14px;
-border-radius:4px;
-}
-
-.pos{
-background:#22c55e;
-}
-
-.neg{
-background:#ef4444;
-}
-
-/* RADAR INSTITUCIONAL */
-
-.barraCard{
-height:22px;
-background:#1e293b;
-border-radius:20px;
-overflow:hidden;
-margin:8px 0;
-}
-
-.a{
-height:100%;
-background:#22c55e;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:12px;
+.status{
+margin-top:5px;
 font-weight:bold;
 }
 
-.b{
-height:100%;
-background:#3b82f6;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:12px;
-font-weight:bold;
-}
-
-/* BOTÕES */
-
-.botao{
-margin-top:8px;
-background:#1e293b;
-color:white;
-border:none;
-padding:6px 10px;
-border-radius:4px;
-cursor:pointer;
-}
-
-.botao:hover{
-background:#334155;
-}
-
-/* LISTA ATIVOS */
+.risk{color:#22c55e;}
+.forte{color:#ef4444;}
+.moderada{color:#facc15;}
+.expansiva{color:#22c55e;}
 
 .explicacao{
 display:none;
 margin-top:10px;
 font-size:13px;
-line-height:1.7;
+line-height:1.5;
+color:#cbd5f5;
 }
 
-/* COR PERCENTUAL */
+/* GRID RADAR INSTITUCIONAL */
 
-.posi{
-color:#22c55e;
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:25px;
+padding:30px;
+}
+
+.card{
+background:#0f172a;
+padding:20px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,0.5);
+}
+
+.titulo{
 font-weight:bold;
+margin-bottom:15px;
 }
 
-.nega{
-color:#ef4444;
+.barra{
+background:#1e293b;
+height:18px;
+border-radius:20px;
+overflow:hidden;
+margin-bottom:10px;
+}
+
+.pro{
+background:#22c55e;
+height:100%;
+text-align:center;
+font-size:12px;
+}
+
+.contra{
+background:#3b82f6;
+height:100%;
+text-align:center;
+font-size:12px;
+}
+
+/* RADAR GLOBAL */
+
+.container{
+background:#0f1b33;
+padding:30px;
+}
+
+.mercado{
+margin-bottom:30px;
+}
+
+.verde{
+background:#22c55e;
+height:14px;
+border-radius:20px;
+}
+
+.vermelho{
+background:#ef4444;
+height:14px;
+border-radius:20px;
+}
+
+/* BOTÕES */
+
+button{
+margin-top:10px;
+background:#1e293b;
+border:none;
+color:white;
+padding:6px 12px;
+border-radius:5px;
+cursor:pointer;
+}
+
+button:hover{
+background:#334155;
+}
+
+/* ATIVOS */
+
+.ativos{
+display:none;
+margin-top:10px;
+font-size:14px;
+line-height:1.6;
+}
+
+.up{color:#22c55e;}
+.down{color:#ef4444;}
+
+/* RODAPE */
+
+footer{
+margin-top:60px;
+padding:30px;
+background:#020617;
+border-top:1px solid #111;
+font-size:13px;
+line-height:1.6;
+text-align:center;
+}
+
+.pix{
+margin-top:15px;
+font-size:16px;
+color:#22c55e;
 font-weight:bold;
 }
 
 </style>
 
+<script>
+
+function mostrar(id){
+
+var el=document.getElementById(id);
+
+if(el.style.display=="block")
+el.style.display="none";
+else
+el.style.display="block";
+
+}
+
+</script>
+
 </head>
 
 <body>
+
+<h1>🌍 PAINEL MACRO GLOBAL</h1>
+
+<div class="macro">
+
+<div class="macrocard">
+
+<div>Sentimento de Mercado</div>
+<div class="status risk">Risk On</div>
+
+<button onclick="mostrar('exp1')">Explicação</button>
+
+<div class="explicacao" id="exp1">
+Risk On significa que investidores estão buscando ativos de risco como ações e criptomoedas.
+</div>
+
+</div>
+
+<div class="macrocard">
+
+<div>Dólar Global</div>
+<div class="status forte">Forte</div>
+
+<button onclick="mostrar('exp2')">Explicação</button>
+
+<div class="explicacao" id="exp2">
+Dólar forte indica fluxo global para ativos americanos e geralmente pressiona commodities e mercados emergentes.
+</div>
+
+</div>
+
+<div class="macrocard">
+
+<div>Volatilidade</div>
+<div class="status moderada">Moderada</div>
+
+<button onclick="mostrar('exp3')">Explicação</button>
+
+<div class="explicacao" id="exp3">
+Volatilidade moderada significa que o mercado tem oscilações controladas sem pânico institucional.
+</div>
+
+</div>
+
+<div class="macrocard">
+
+<div>Liquidez Global</div>
+<div class="status expansiva">Expansiva</div>
+
+<button onclick="mostrar('exp4')">Explicação</button>
+
+<div class="explicacao" id="exp4">
+Liquidez expansiva ocorre quando bancos centrais e crédito global aumentam o dinheiro circulando.
+</div>
+
+</div>
+
+</div>
 
 <h1>📡 RADAR INSTITUCIONAL DE MERCADOS</h1>
 
 <div class="grid">
 
-<div class="box">
+<div class="card">
 
-<b>NASDAQ</b>
+<div class="titulo">NASDAQ</div>
 
-A
-<div class="barraCard"><div class="a" style="width:8%">8%</div></div>
+A (PRO)
 
-B
-<div class="barraCard"><div class="b" style="width:92%">92%</div></div>
+<div class="barra">
+<div class="pro" style="width:65%">65%</div>
+</div>
 
-<button class="botao" onclick="toggle('nasdaq')">Mostrar ativos</button>
+B (CONTRA)
 
-<div id="nasdaq" class="explicacao">
+<div class="barra">
+<div class="contra" style="width:35%">35%</div>
+</div>
 
-NVDA <span class="posi">+1.32%</span><br>
-AAPL <span class="posi">+0.84%</span><br>
-MSFT <span class="posi">+0.66%</span><br>
-AMZN <span class="nega">-0.45%</span><br>
-DXY <span class="posi">+0.28%</span><br>
-US10Y <span class="posi">+0.14%</span>
+<button onclick="mostrar('nasdaq')">Mostrar ativos</button>
+
+<div class="ativos" id="nasdaq">
+
+<div class="up">NVDA +1.20%</div>
+<div class="up">AAPL +0.90%</div>
+<div class="up">MSFT +0.60%</div>
+<div class="up">BTC +1.80%</div>
+
+<br>
+
+<div class="down">DXY +0.30%</div>
+<div class="up">VIX +1.50%</div>
+<div class="up">GOLD +0.40%</div>
 
 </div>
 
 </div>
 
-<div class="box">
+<div class="card">
 
-<b>WIN FUTURO</b>
+<div class="titulo">WIN FUTURO</div>
 
-A
-<div class="barraCard"><div class="a" style="width:83%">83%</div></div>
+A (PRO)
 
-B
-<div class="barraCard"><div class="b" style="width:17%">17%</div></div>
+<div class="barra">
+<div class="pro" style="width:70%">70%</div>
+</div>
 
-<button class="botao" onclick="toggle('win')">Mostrar ativos</button>
+B (CONTRA)
 
-<div id="win" class="explicacao">
+<div class="barra">
+<div class="contra" style="width:30%">30%</div>
+</div>
 
-VALE3 <span class="posi">+1.15%</span><br>
-PETR4 <span class="posi">+0.92%</span><br>
-ITUB4 <span class="nega">-0.34%</span><br>
-USD/BRL <span class="posi">+0.51%</span>
+<button onclick="mostrar('win')">Mostrar ativos</button>
+
+<div class="ativos" id="win">
+
+<div class="up">VALE3 +1.10%</div>
+<div class="up">PETR4 +0.95%</div>
+<div class="up">S&P500 +0.60%</div>
+
+<br>
+
+<div class="down">USD/BRL +0.50%</div>
+<div class="up">VIX +1.20%</div>
 
 </div>
 
 </div>
 
-<div class="box">
+<div class="card">
 
-<b>DÓLAR GLOBAL</b>
+<div class="titulo">DÓLAR GLOBAL</div>
 
-A
-<div class="barraCard"><div class="a" style="width:15%">15%</div></div>
+A (PRO)
 
-B
-<div class="barraCard"><div class="b" style="width:85%">85%</div></div>
+<div class="barra">
+<div class="pro" style="width:55%">55%</div>
+</div>
 
-<button class="botao" onclick="toggle('dolar')">Mostrar ativos</button>
+B (CONTRA)
 
-<div id="dolar" class="explicacao">
+<div class="barra">
+<div class="contra" style="width:45%">45%</div>
+</div>
 
-DXY <span class="posi">+0.40%</span><br>
-US10Y <span class="posi">+0.22%</span><br>
-USDJPY <span class="posi">+0.35%</span><br>
-NASDAQ <span class="nega">-0.90%</span>
+<button onclick="mostrar('dolar')">Mostrar ativos</button>
+
+<div class="ativos" id="dolar">
+
+<div class="up">DXY +0.40%</div>
+<div class="up">US10Y +0.25%</div>
+<div class="up">USDJPY +0.35%</div>
+
+<br>
+
+<div class="down">NASDAQ -0.80%</div>
+<div class="down">BTC -1.20%</div>
 
 </div>
 
 </div>
 
-<div class="box">
+<div class="card">
 
-<b>OURO GLOBAL</b>
+<div class="titulo">OURO GLOBAL</div>
 
-A
-<div class="barraCard"><div class="a" style="width:42%">42%</div></div>
+A (PRO)
 
-B
-<div class="barraCard"><div class="b" style="width:58%">58%</div></div>
-
-<button class="botao" onclick="toggle('ouro')">Mostrar ativos</button>
-
-<div id="ouro" class="explicacao">
-
-VIX <span class="posi">+2.10%</span><br>
-TLT <span class="posi">+0.73%</span><br>
-SP500 <span class="nega">-0.64%</span><br>
-DXY <span class="posi">+0.30%</span>
-
+<div class="barra">
+<div class="pro" style="width:60%">60%</div>
 </div>
 
+B (CONTRA)
+
+<div class="barra">
+<div class="contra" style="width:40%">40%</div>
 </div>
 
-</div>
+<button onclick="mostrar('ouro')">Mostrar ativos</button>
 
-<h2>🌎 RADAR GLOBAL DE MERCADO</h2>
+<div class="ativos" id="ouro">
 
-<div class="grid">
+<div class="up">GOLD +0.80%</div>
+<div class="up">SILVER +0.60%</div>
+<div class="up">VIX +1.40%</div>
 
-<div class="box">
+<br>
 
-<h3>FORÇA DOS MERCADOS</h3>
-
-<div class="linha">
-Américas
-<div class="barra neg" style="width:40%"></div>
-
-<button class="botao" onclick="toggle('america')">Mostrar ativos</button>
-
-<div id="america" class="explicacao">
-
-S&P500 <span class="nega">-0.84%</span><br>
-Nasdaq <span class="nega">-1.12%</span><br>
-Dow Jones <span class="nega">-0.55%</span><br>
-Russell 2000 <span class="nega">-1.02%</span><br>
-Ibovespa <span class="nega">-0.48%</span>
-
-</div>
-
-</div>
-
-<div class="linha">
-Europa
-<div class="barra pos" style="width:65%"></div>
-
-<button class="botao" onclick="toggle('europa')">Mostrar ativos</button>
-
-<div id="europa" class="explicacao">
-
-DAX <span class="posi">+0.71%</span><br>
-CAC 40 <span class="posi">+0.52%</span><br>
-FTSE 100 <span class="posi">+0.44%</span><br>
-EuroStoxx <span class="posi">+0.60%</span>
-
-</div>
-
-</div>
-
-<div class="linha">
-Ásia
-<div class="barra neg" style="width:35%"></div>
-
-<button class="botao" onclick="toggle('asia')">Mostrar ativos</button>
-
-<div id="asia" class="explicacao">
-
-Nikkei <span class="nega">-0.35%</span><br>
-Hang Seng <span class="nega">-0.80%</span><br>
-Shanghai <span class="posi">+0.12%</span><br>
-Kospi <span class="nega">-0.44%</span>
-
-</div>
-
-</div>
-
-<div class="linha">
-Commodities
-<div class="barra pos" style="width:75%"></div>
-
-<button class="botao" onclick="toggle('commodities')">Mostrar ativos</button>
-
-<div id="commodities" class="explicacao">
-
-Petróleo WTI <span class="posi">+1.22%</span><br>
-Ouro <span class="posi">+0.84%</span><br>
-Prata <span class="posi">+0.55%</span><br>
-Cobre <span class="nega">-0.22%</span><br>
-Soja <span class="posi">+0.34%</span>
-
-</div>
-
-</div>
-
-<div class="linha">
-Crypto
-<div class="barra pos" style="width:90%"></div>
-
-<button class="botao" onclick="toggle('crypto')">Mostrar ativos</button>
-
-<div id="crypto" class="explicacao">
-
-Bitcoin <span class="posi">+3.10%</span><br>
-Ethereum <span class="posi">+2.45%</span><br>
-Solana <span class="posi">+4.02%</span><br>
-BNB <span class="posi">+1.20%</span>
+<div class="down">DXY +0.30%</div>
+<div class="down">NASDAQ -0.50%</div>
 
 </div>
 
@@ -326,27 +390,127 @@ BNB <span class="posi">+1.20%</span>
 
 </div>
 
+<div class="container">
+
+<h1>🌍 RADAR GLOBAL DE MERCADO</h1>
+
+<h2>FORÇA DOS MERCADOS</h2>
+
+<div class="mercado">
+
+<div>Américas</div>
+<div class="vermelho" style="width:55%"></div>
+
+<button onclick="mostrar('americas')">Mostrar ativos</button>
+
+<div class="ativos" id="americas">
+
+<div class="down">NASDAQ -0.80%</div>
+<div class="down">S&P500 -0.65%</div>
+<div class="down">DOW JONES -0.40%</div>
+<div class="up">VIX +1.30%</div>
+
 </div>
 
-<script>
+</div>
 
-function toggle(id){
+<div class="mercado">
 
-var x=document.getElementById(id);
+<div>Europa</div>
+<div class="verde" style="width:90%"></div>
 
-if(x.style.display==="none"||x.style.display===""){
+<button onclick="mostrar('europa')">Mostrar ativos</button>
 
-x.style.display="block";
+<div class="ativos" id="europa">
 
-}else{
+<div class="up">DAX +1.20%</div>
+<div class="up">CAC40 +1.10%</div>
+<div class="up">FTSE100 +0.90%</div>
 
-x.style.display="none";
+</div>
 
-}
+</div>
 
-}
+<div class="mercado">
 
-</script>
+<div>Ásia</div>
+<div class="vermelho" style="width:50%"></div>
+
+<button onclick="mostrar('asia')">Mostrar ativos</button>
+
+<div class="ativos" id="asia">
+
+<div class="down">NIKKEI -0.70%</div>
+<div class="down">HANG SENG -1.20%</div>
+<div class="down">SHANGHAI -0.60%</div>
+
+</div>
+
+</div>
+
+<div class="mercado">
+
+<div>Commodities</div>
+<div class="verde" style="width:95%"></div>
+
+<button onclick="mostrar('commodities')">Mostrar ativos</button>
+
+<div class="ativos" id="commodities">
+
+<div class="up">Ouro +0.80%</div>
+<div class="up">Petróleo +1.20%</div>
+<div class="up">Cobre +0.70%</div>
+<div class="up">Minério +1.50%</div>
+
+</div>
+
+</div>
+
+<div class="mercado">
+
+<div>Crypto</div>
+<div class="verde" style="width:100%"></div>
+
+<button onclick="mostrar('crypto')">Mostrar ativos</button>
+
+<div class="ativos" id="crypto">
+
+<div class="up">BTC +2.40%</div>
+<div class="up">ETH +1.90%</div>
+<div class="up">BNB +1.10%</div>
+<div class="up">SOL +3.10%</div>
+<div class="up">XRP +0.80%</div>
+<div class="up">ADA +0.65%</div>
+<div class="up">DOGE +1.40%</div>
+<div class="up">AVAX +2.00%</div>
+<div class="up">DOT +0.75%</div>
+<div class="up">LINK +1.35%</div>
+<div class="up">TON +2.10%</div>
+<div class="up">TRX +0.55%</div>
+<div class="up">LTC +0.90%</div>
+<div class="up">MATIC +1.25%</div>
+<div class="up">NEAR +1.60%</div>
+
+</div>
+
+</div>
+
+</div>
+
+<footer>
+
+⚠️ <b>Não é Recomendação:</b>  
+As informações, análises e exemplos apresentados aqui não constituem recomendação de compra ou venda de ativos financeiros.
+
+<div class="pix">
+
+💚 Apoie este projeto  
+PIX:  
+<b>faivalue10@gmail.com</b>
+
+</div>
+
+</footer>
 
 </body>
 </html>
