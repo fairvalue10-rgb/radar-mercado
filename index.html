@@ -197,327 +197,51 @@ el.style.display="block";
 <div class="macro">
 
 <div class="macrocard">
-
 <div>Sentimento de Mercado</div>
 <div class="status risk">Risk On</div>
-
 <div class="barra">
 <div class="pro" style="width:70%">70%</div>
 </div>
-
 <button onclick="mostrar('exp1')">Explicação</button>
-
 <div class="explicacao" id="exp1">
 Risk On significa que investidores estão buscando ativos de risco como ações e criptomoedas.
 </div>
-
 </div>
 
 <div class="macrocard">
-
 <div>Dólar Global</div>
 <div class="status forte">Forte</div>
-
 <div class="barra">
 <div class="contra" style="width:75%">75%</div>
 </div>
-
 <button onclick="mostrar('exp2')">Explicação</button>
-
 <div class="explicacao" id="exp2">
 Dólar forte indica fluxo global para ativos americanos e geralmente pressiona commodities e mercados emergentes.
 </div>
-
 </div>
 
 <div class="macrocard">
-
 <div>Volatilidade</div>
 <div class="status moderada">Moderada</div>
-
 <div class="barra">
 <div class="contra" style="width:50%">50%</div>
 </div>
-
 <button onclick="mostrar('exp3')">Explicação</button>
-
 <div class="explicacao" id="exp3">
 Volatilidade moderada significa que o mercado tem oscilações controladas sem pânico institucional.
 </div>
-
 </div>
 
 <div class="macrocard">
-
 <div>Liquidez Global</div>
 <div class="status expansiva">Expansiva</div>
-
 <div class="barra">
 <div class="pro" style="width:80%">80%</div>
 </div>
-
 <button onclick="mostrar('exp4')">Explicação</button>
-
 <div class="explicacao" id="exp4">
 Liquidez expansiva ocorre quando bancos centrais e crédito global aumentam o dinheiro circulando.
 </div>
-
-</div>
-
-</div>
-
-<!-- RESTANTE DO SEU CÓDIGO CONTINUA EXATAMENTE IGUAL -->
-
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-<meta charset="UTF-8">
-<title>Radar Institucional de Mercados</title>
-
-<style>
-
-body{
-background:#020617;
-color:white;
-font-family:Arial;
-margin:0;
-}
-
-/* TITULOS */
-
-h1{
-text-align:center;
-margin-top:40px;
-margin-bottom:40px;
-}
-
-h2{
-margin-bottom:30px;
-}
-
-/* PAINEL MACRO */
-
-.macro{
-padding:30px;
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
-}
-
-.macrocard{
-background:#0f172a;
-padding:20px;
-border-radius:10px;
-}
-
-.status{
-margin-top:5px;
-font-weight:bold;
-}
-
-.risk{color:#22c55e;}
-.forte{color:#ef4444;}
-.moderada{color:#facc15;}
-.expansiva{color:#22c55e;}
-
-.explicacao{
-display:none;
-margin-top:10px;
-font-size:13px;
-line-height:1.5;
-color:#cbd5f5;
-}
-
-/* GRID RADAR INSTITUCIONAL */
-
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-gap:25px;
-padding:30px;
-}
-
-.card{
-background:#0f172a;
-padding:20px;
-border-radius:10px;
-box-shadow:0 0 10px rgba(0,0,0,0.5);
-}
-
-.titulo{
-font-weight:bold;
-margin-bottom:15px;
-}
-
-.barra{
-background:#1e293b;
-height:18px;
-border-radius:20px;
-overflow:hidden;
-margin-bottom:10px;
-}
-
-.pro{
-background:#22c55e;
-height:100%;
-text-align:center;
-font-size:12px;
-}
-
-.contra{
-background:#3b82f6;
-height:100%;
-text-align:center;
-font-size:12px;
-}
-
-/* RADAR GLOBAL */
-
-.container{
-background:#0f1b33;
-padding:30px;
-}
-
-.mercado{
-margin-bottom:30px;
-}
-
-.verde{
-background:#22c55e;
-height:14px;
-border-radius:20px;
-}
-
-.vermelho{
-background:#ef4444;
-height:14px;
-border-radius:20px;
-}
-
-/* BOTÕES */
-
-button{
-margin-top:10px;
-background:#1e293b;
-border:none;
-color:white;
-padding:6px 12px;
-border-radius:5px;
-cursor:pointer;
-}
-
-button:hover{
-background:#334155;
-}
-
-/* ATIVOS */
-
-.ativos{
-display:none;
-margin-top:10px;
-font-size:14px;
-line-height:1.6;
-}
-
-.up{color:#22c55e;}
-.down{color:#ef4444;}
-
-/* RODAPE */
-
-footer{
-margin-top:60px;
-padding:30px;
-background:#020617;
-border-top:1px solid #111;
-font-size:13px;
-line-height:1.6;
-text-align:center;
-}
-
-.pix{
-margin-top:15px;
-font-size:16px;
-color:#22c55e;
-font-weight:bold;
-}
-
-</style>
-
-<script>
-
-function mostrar(id){
-
-var el=document.getElementById(id);
-
-if(el.style.display=="block")
-el.style.display="none";
-else
-el.style.display="block";
-
-}
-
-</script>
-
-</head>
-
-<body>
-
-<h1>🌍 PAINEL MACRO GLOBAL</h1>
-
-<div class="macro">
-
-<div class="macrocard">
-
-<div>Sentimento de Mercado</div>
-<div class="status risk">Risk On</div>
-
-<button onclick="mostrar('exp1')">Explicação</button>
-
-<div class="explicacao" id="exp1">
-Risk On significa que investidores estão buscando ativos de risco como ações e criptomoedas.
-</div>
-
-</div>
-
-<div class="macrocard">
-
-<div>Dólar Global</div>
-<div class="status forte">Forte</div>
-
-<button onclick="mostrar('exp2')">Explicação</button>
-
-<div class="explicacao" id="exp2">
-Dólar forte indica fluxo global para ativos americanos e geralmente pressiona commodities e mercados emergentes.
-</div>
-
-</div>
-
-<div class="macrocard">
-
-<div>Volatilidade</div>
-<div class="status moderada">Moderada</div>
-
-<button onclick="mostrar('exp3')">Explicação</button>
-
-<div class="explicacao" id="exp3">
-Volatilidade moderada significa que o mercado tem oscilações controladas sem pânico institucional.
-</div>
-
-</div>
-
-<div class="macrocard">
-
-<div>Liquidez Global</div>
-<div class="status expansiva">Expansiva</div>
-
-<button onclick="mostrar('exp4')">Explicação</button>
-
-<div class="explicacao" id="exp4">
-Liquidez expansiva ocorre quando bancos centrais e crédito global aumentam o dinheiro circulando.
-</div>
-
 </div>
 
 </div>
@@ -527,137 +251,89 @@ Liquidez expansiva ocorre quando bancos centrais e crédito global aumentam o di
 <div class="grid">
 
 <div class="card">
-
 <div class="titulo">NASDAQ</div>
-
 A (PRO)
-
 <div class="barra">
 <div class="pro" style="width:65%">65%</div>
 </div>
-
 B (CONTRA)
-
 <div class="barra">
 <div class="contra" style="width:35%">35%</div>
 </div>
-
 <button onclick="mostrar('nasdaq')">Mostrar ativos</button>
-
 <div class="ativos" id="nasdaq">
-
 <div class="up">NVDA +1.20%</div>
 <div class="up">AAPL +0.90%</div>
 <div class="up">MSFT +0.60%</div>
 <div class="up">BTC +1.80%</div>
-
 <br>
-
 <div class="down">DXY +0.30%</div>
 <div class="up">VIX +1.50%</div>
 <div class="up">GOLD +0.40%</div>
-
 </div>
-
 </div>
 
 <div class="card">
-
 <div class="titulo">WIN FUTURO</div>
-
 A (PRO)
-
 <div class="barra">
 <div class="pro" style="width:70%">70%</div>
 </div>
-
 B (CONTRA)
-
 <div class="barra">
 <div class="contra" style="width:30%">30%</div>
 </div>
-
 <button onclick="mostrar('win')">Mostrar ativos</button>
-
 <div class="ativos" id="win">
-
 <div class="up">VALE3 +1.10%</div>
 <div class="up">PETR4 +0.95%</div>
 <div class="up">S&P500 +0.60%</div>
-
 <br>
-
 <div class="down">USD/BRL +0.50%</div>
 <div class="up">VIX +1.20%</div>
-
 </div>
-
 </div>
 
 <div class="card">
-
 <div class="titulo">DÓLAR GLOBAL</div>
-
 A (PRO)
-
 <div class="barra">
 <div class="pro" style="width:55%">55%</div>
 </div>
-
 B (CONTRA)
-
 <div class="barra">
 <div class="contra" style="width:45%">45%</div>
 </div>
-
 <button onclick="mostrar('dolar')">Mostrar ativos</button>
-
 <div class="ativos" id="dolar">
-
 <div class="up">DXY +0.40%</div>
 <div class="up">US10Y +0.25%</div>
 <div class="up">USDJPY +0.35%</div>
-
 <br>
-
 <div class="down">NASDAQ -0.80%</div>
 <div class="down">BTC -1.20%</div>
-
 </div>
-
 </div>
 
 <div class="card">
-
 <div class="titulo">OURO GLOBAL</div>
-
 A (PRO)
-
 <div class="barra">
 <div class="pro" style="width:60%">60%</div>
 </div>
-
 B (CONTRA)
-
 <div class="barra">
 <div class="contra" style="width:40%">40%</div>
 </div>
-
 <button onclick="mostrar('ouro')">Mostrar ativos</button>
-
 <div class="ativos" id="ouro">
-
 <div class="up">GOLD +0.80%</div>
 <div class="up">SILVER +0.60%</div>
 <div class="up">VIX +1.40%</div>
-
 <br>
-
 <div class="down">DXY +0.30%</div>
 <div class="down">NASDAQ -0.50%</div>
-
 </div>
-
 </div>
 
 </div>
@@ -669,87 +345,59 @@ B (CONTRA)
 <h2>FORÇA DOS MERCADOS</h2>
 
 <div class="mercado">
-
 <div>Américas</div>
 <div class="vermelho" style="width:55%"></div>
-
 <button onclick="mostrar('americas')">Mostrar ativos</button>
-
 <div class="ativos" id="americas">
-
 <div class="down">NASDAQ -0.80%</div>
 <div class="down">S&P500 -0.65%</div>
 <div class="down">DOW JONES -0.40%</div>
 <div class="up">VIX +1.30%</div>
-
 </div>
-
 </div>
 
 <div class="mercado">
-
 <div>Europa</div>
 <div class="verde" style="width:90%"></div>
-
 <button onclick="mostrar('europa')">Mostrar ativos</button>
-
 <div class="ativos" id="europa">
-
 <div class="up">DAX +1.20%</div>
 <div class="up">CAC40 +1.10%</div>
 <div class="up">FTSE100 +0.90%</div>
-
 </div>
-
 </div>
 
 <div class="mercado">
-
 <div>Ásia/Oceania</div>
 <div class="vermelho" style="width:50%"></div>
-
 <button onclick="mostrar('asia')">Mostrar ativos</button>
-
 <div class="ativos" id="asia">
-
 <div class="down">NIKKEI -0.70%</div>
 <div class="down">HANG SENG -1.20%</div>
 <div class="down">SHANGHAI -0.60%</div>
 <div class="up">ASX200 +0.40%</div>
 <div class="up">AUDUSD +0.25%</div>
 <div class="up">NZDUSD +0.30%</div>
-
 </div>
-
 </div>
 
 <div class="mercado">
-
 <div>Commodities</div>
 <div class="verde" style="width:95%"></div>
-
 <button onclick="mostrar('commodities')">Mostrar ativos</button>
-
 <div class="ativos" id="commodities">
-
 <div class="up">Ouro +0.80%</div>
 <div class="up">Petróleo +1.20%</div>
 <div class="up">Cobre +0.70%</div>
 <div class="up">Minério +1.50%</div>
-
 </div>
-
 </div>
 
 <div class="mercado">
-
 <div>Crypto</div>
 <div class="verde" style="width:100%"></div>
-
 <button onclick="mostrar('crypto')">Mostrar ativos</button>
-
 <div class="ativos" id="crypto">
-
 <div class="up">BTC +2.40%</div>
 <div class="up">ETH +1.90%</div>
 <div class="up">BNB +1.10%</div>
@@ -765,26 +413,17 @@ B (CONTRA)
 <div class="up">LTC +0.90%</div>
 <div class="up">MATIC +1.25%</div>
 <div class="up">NEAR +1.60%</div>
-
 </div>
-
 </div>
 
 </div>
 
 <footer>
-
-⚠️ <b>Não é Recomendação:</b>  
-As informações, análises e exemplos apresentados aqui não constituem recomendação de compra ou venda de ativos financeiros.
-
+⚠️ <b>Não é Recomendação:</b> As informações, análises e exemplos apresentados aqui não constituem recomendação de compra ou venda de ativos financeiros.
 <div class="pix">
-
-💚 Apoie este projeto  
-PIX:  
-<b>faivalue10@gmail.com</b>
-
+💚 Apoie este projeto<br>
+PIX: <b>faivalue10@gmail.com</b>
 </div>
-
 </footer>
 
 </body>
