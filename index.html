@@ -201,6 +201,278 @@ el.style.display="block";
 <div>Sentimento de Mercado</div>
 <div class="status risk">Risk On</div>
 
+<div class="barra">
+<div class="pro" style="width:70%">70%</div>
+</div>
+
+<button onclick="mostrar('exp1')">Explicação</button>
+
+<div class="explicacao" id="exp1">
+Risk On significa que investidores estão buscando ativos de risco como ações e criptomoedas.
+</div>
+
+</div>
+
+<div class="macrocard">
+
+<div>Dólar Global</div>
+<div class="status forte">Forte</div>
+
+<div class="barra">
+<div class="contra" style="width:75%">75%</div>
+</div>
+
+<button onclick="mostrar('exp2')">Explicação</button>
+
+<div class="explicacao" id="exp2">
+Dólar forte indica fluxo global para ativos americanos e geralmente pressiona commodities e mercados emergentes.
+</div>
+
+</div>
+
+<div class="macrocard">
+
+<div>Volatilidade</div>
+<div class="status moderada">Moderada</div>
+
+<div class="barra">
+<div class="contra" style="width:50%">50%</div>
+</div>
+
+<button onclick="mostrar('exp3')">Explicação</button>
+
+<div class="explicacao" id="exp3">
+Volatilidade moderada significa que o mercado tem oscilações controladas sem pânico institucional.
+</div>
+
+</div>
+
+<div class="macrocard">
+
+<div>Liquidez Global</div>
+<div class="status expansiva">Expansiva</div>
+
+<div class="barra">
+<div class="pro" style="width:80%">80%</div>
+</div>
+
+<button onclick="mostrar('exp4')">Explicação</button>
+
+<div class="explicacao" id="exp4">
+Liquidez expansiva ocorre quando bancos centrais e crédito global aumentam o dinheiro circulando.
+</div>
+
+</div>
+
+</div>
+
+<!-- RESTANTE DO SEU CÓDIGO CONTINUA EXATAMENTE IGUAL -->
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Radar Institucional de Mercados</title>
+
+<style>
+
+body{
+background:#020617;
+color:white;
+font-family:Arial;
+margin:0;
+}
+
+/* TITULOS */
+
+h1{
+text-align:center;
+margin-top:40px;
+margin-bottom:40px;
+}
+
+h2{
+margin-bottom:30px;
+}
+
+/* PAINEL MACRO */
+
+.macro{
+padding:30px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+}
+
+.macrocard{
+background:#0f172a;
+padding:20px;
+border-radius:10px;
+}
+
+.status{
+margin-top:5px;
+font-weight:bold;
+}
+
+.risk{color:#22c55e;}
+.forte{color:#ef4444;}
+.moderada{color:#facc15;}
+.expansiva{color:#22c55e;}
+
+.explicacao{
+display:none;
+margin-top:10px;
+font-size:13px;
+line-height:1.5;
+color:#cbd5f5;
+}
+
+/* GRID RADAR INSTITUCIONAL */
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:25px;
+padding:30px;
+}
+
+.card{
+background:#0f172a;
+padding:20px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,0.5);
+}
+
+.titulo{
+font-weight:bold;
+margin-bottom:15px;
+}
+
+.barra{
+background:#1e293b;
+height:18px;
+border-radius:20px;
+overflow:hidden;
+margin-bottom:10px;
+}
+
+.pro{
+background:#22c55e;
+height:100%;
+text-align:center;
+font-size:12px;
+}
+
+.contra{
+background:#3b82f6;
+height:100%;
+text-align:center;
+font-size:12px;
+}
+
+/* RADAR GLOBAL */
+
+.container{
+background:#0f1b33;
+padding:30px;
+}
+
+.mercado{
+margin-bottom:30px;
+}
+
+.verde{
+background:#22c55e;
+height:14px;
+border-radius:20px;
+}
+
+.vermelho{
+background:#ef4444;
+height:14px;
+border-radius:20px;
+}
+
+/* BOTÕES */
+
+button{
+margin-top:10px;
+background:#1e293b;
+border:none;
+color:white;
+padding:6px 12px;
+border-radius:5px;
+cursor:pointer;
+}
+
+button:hover{
+background:#334155;
+}
+
+/* ATIVOS */
+
+.ativos{
+display:none;
+margin-top:10px;
+font-size:14px;
+line-height:1.6;
+}
+
+.up{color:#22c55e;}
+.down{color:#ef4444;}
+
+/* RODAPE */
+
+footer{
+margin-top:60px;
+padding:30px;
+background:#020617;
+border-top:1px solid #111;
+font-size:13px;
+line-height:1.6;
+text-align:center;
+}
+
+.pix{
+margin-top:15px;
+font-size:16px;
+color:#22c55e;
+font-weight:bold;
+}
+
+</style>
+
+<script>
+
+function mostrar(id){
+
+var el=document.getElementById(id);
+
+if(el.style.display=="block")
+el.style.display="none";
+else
+el.style.display="block";
+
+}
+
+</script>
+
+</head>
+
+<body>
+
+<h1>🌍 PAINEL MACRO GLOBAL</h1>
+
+<div class="macro">
+
+<div class="macrocard">
+
+<div>Sentimento de Mercado</div>
+<div class="status risk">Risk On</div>
+
 <button onclick="mostrar('exp1')">Explicação</button>
 
 <div class="explicacao" id="exp1">
@@ -433,7 +705,7 @@ B (CONTRA)
 
 <div class="mercado">
 
-<div>Ásia</div>
+<div>Ásia/Oceania</div>
 <div class="vermelho" style="width:50%"></div>
 
 <button onclick="mostrar('asia')">Mostrar ativos</button>
@@ -443,6 +715,9 @@ B (CONTRA)
 <div class="down">NIKKEI -0.70%</div>
 <div class="down">HANG SENG -1.20%</div>
 <div class="down">SHANGHAI -0.60%</div>
+<div class="up">ASX200 +0.40%</div>
+<div class="up">AUDUSD +0.25%</div>
+<div class="up">NZDUSD +0.30%</div>
 
 </div>
 
