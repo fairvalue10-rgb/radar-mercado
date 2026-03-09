@@ -1,104 +1,323 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <title>Radar de Fluxo Global - Lancelin</title>
-    <style>
-        body { background: #020617; color: white; font-family: Arial, sans-serif; padding: 20px; margin: 0; }
-        .container { max-width: 950px; margin: auto; background: #020617; border-radius: 15px; border: 1px solid #1e293b; padding: 25px; box-shadow: 0 0 20px rgba(0,0,0,0.5); }
-        .header { text-align: center; color: #3b82f6; font-size: 18px; margin-bottom: 30px; font-weight: bold; text-transform: uppercase; }
-        
-        .radar-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; margin-bottom: 25px; }
-        .radar-box { background: #0f172a; padding: 20px; border-radius: 12px; border: 1px solid #334155; text-align: center; }
-        .radar-title { font-size: 11px; color: #94a3b8; margin-bottom: 12px; font-weight: bold; }
-        
-        .barra-fundo { background: #1e293b; height: 22px; border-radius: 6px; overflow: hidden; position: relative; border: 1px solid #475569; }
-        .barra-progresso { height: 100%; transition: 1.5s ease-in-out; font-size: 11px; line-height: 22px; color: black; font-weight: bold; width: 50%; }
-        
-        #bar-nasdaq, #bar-win { background: #22c55e; }
-        #bar-dxy { background: #3b82f6; color: white; }
-        #bar-gold { background: #eab308; }
-        #bar-7forcas { background: linear-gradient(90deg, #ef4444, #eab308, #22c55e); color: white; }
+<meta charset="UTF-8">
 
-        .btn-toggle { width: 100%; background: #1e293b; color: #94a3b8; border: 1px solid #334155; padding: 8px; cursor: pointer; border-radius: 5px; font-size: 11px; margin-top: 10px; transition: 0.3s; }
-        .detalhes { display: none; margin-top: 10px; padding: 15px; background: rgba(0,0,0,0.3); border-radius: 8px; font-size: 12px; text-align: left; line-height: 1.6; border: 1px dashed #334155; }
-        .pro { color: #4ade80; font-weight: bold; } 
-        .contra { color: #f87171; font-weight: bold; }
-        .status { text-align: center; font-size: 10px; color: #64748b; margin-top: 25px; font-style: italic; }
-    </style>
+<title>Radar Institucional de Mercados</title>
+
+<style>
+
+body{
+background:#020617;
+color:white;
+font-family:Arial;
+margin:0;
+padding:40px;
+}
+
+h1{
+text-align:center;
+margin-bottom:40px;
+}
+
+.box{
+background:#0f172a;
+padding:20px;
+margin-bottom:25px;
+border-radius:8px;
+}
+
+.barra{
+height:12px;
+background:#1e293b;
+border-radius:6px;
+margin-top:6px;
+}
+
+.fill{
+height:12px;
+background:#22c55e;
+border-radius:6px;
+width:0%;
+}
+
+button{
+background:#2563eb;
+border:none;
+color:white;
+padding:6px 12px;
+border-radius:4px;
+cursor:pointer;
+margin-top:10px;
+}
+
+.lista{
+display:none;
+margin-top:10px;
+}
+
+.score{
+font-size:20px;
+margin-top:20px;
+font-weight:bold;
+}
+
+</style>
+
 </head>
+
 <body>
 
-<div class="container">
-    <div class="header">📡 RADAR DE FLUXO GLOBAL - LANCELIN</div>
+<h1>Radar Institucional de Mercados</h1>
 
-    <div class="radar-grid">
-        <div class="radar-box">
-            <div class="radar-title">NASDAQ (MNQH)</div>
-            <div class="barra-fundo"><div id="bar-nasdaq" class="barra-progresso">0%</div></div>
-            <button class="btn-toggle" onclick="toggle('det-nasdaq')">MOSTRAR ATIVOS</button>
-            <div id="det-nasdaq" class="detalhes">
-                <span class="pro">PRO (+):</span> Apple (AAPL), MSFT, NVDA <br>
-                <span class="contra">CONTRA (-):</span> DXY, VIX, US10Y
-            </div>
-        </div>
+<!-- NASDAQ -->
 
-        <div class="radar-box">
-            <div class="radar-title">WIN (Bolsa BR em NY)</div>
-            <div class="barra-fundo"><div id="bar-win" class="barra-progresso">0%</div></div>
-            <button class="btn-toggle" onclick="toggle('det-win')">MOSTRAR ATIVOS</button>
-            <div id="det-win" class="detalhes">
-                <span class="pro">PRO (+):</span> EWZ, PETR4, VALE3 <br>
-                <span class="contra">CONTRA (-):</span> DXY, US10Y, EWZ(V)
-            </div>
-        </div>
+<div class="box">
 
-        <div class="radar-box">
-            <div class="radar-title">DÓLAR GLOBAL (DXY)</div>
-            <div class="barra-fundo"><div id="bar-dxy" class="barra-progresso">0%</div></div>
-            <button class="btn-toggle" onclick="toggle('det-dxy')">MOSTRAR ATIVOS</button>
-            <div id="det-dxy" class="detalhes">
-                <span class="pro">PRO (+):</span> US10Y, VIX, FED <br>
-                <span class="contra">CONTRA (-):</span> EUR, JPY, GBP
-            </div>
-        </div>
+<h3>Nasdaq</h3>
 
-        <div class="radar-box">
-            <div class="radar-title">OURO GLOBAL (GOLD)</div>
-            <div class="barra-fundo"><div id="bar-gold" class="barra-progresso">0%</div></div>
-            <button class="btn-toggle" onclick="toggle('det-gold')">MOSTRAR ATIVOS</button>
-            <div id="det-gold" class="detalhes">
-                <span class="pro">PRO (+):</span> INFLAÇÃO, RISCO <br>
-                <span class="contra">CONTRA (-):</span> DXY, JUROS REAIS
-            </div>
-        </div>
-    </div>
+<div class="barra"><div id="nasdaqBar" class="fill"></div></div>
+<div id="nasdaqPct">0%</div>
 
-    <div style="background: #0f172a; padding: 25px; border-radius: 12px; border: 1px solid #3b82f6; text-align: center;">
-        <div style="font-weight: bold; margin-bottom: 15px; color: #4ade80;">📊 SCORE AUTOMÁTICO - 7 FORÇAS DO MERCADO</div>
-        <div class="barra-fundo" style="height: 30px;"><div id="bar-7forcas" class="barra-progresso">Sincronizando...</div></div>
-        <div style="font-size: 11px; color: #94a3b8; margin-top: 10px;">Sentimento: <span id="sentimento">Aguardando dados...</span></div>
-    </div>
+<button onclick="toggle('nasdaq')">Mostrar / Ocultar ativos</button>
 
-    <div class="status" id="status">Iniciando fila de processamento (Respeitando limites da API)...</div>
+<div id="nasdaq" class="lista">
+
+<b>Pró Nasdaq</b>
+
+<div>Semicondutores</div>
+<div>Tecnologia</div>
+<div>Liquidez global</div>
+
+<br>
+
+<b>Contra Nasdaq</b>
+
+<div>VIX alto</div>
+<div>Dólar forte</div>
+<div>Juros altos</div>
+
+</div>
+
+</div>
+
+<!-- WIN -->
+
+<div class="box">
+
+<h3>Win Futuro</h3>
+
+<div class="barra"><div id="winBar" class="fill"></div></div>
+<div id="winPct">0%</div>
+
+<button onclick="toggle('win')">Mostrar / Ocultar ativos</button>
+
+<div id="win" class="lista">
+
+<b>Pró Win</b>
+
+<div>Commodities</div>
+<div>Fluxo estrangeiro</div>
+
+<br>
+
+<b>Contra Win</b>
+
+<div>Dólar forte</div>
+<div>VIX alto</div>
+
+</div>
+
+</div>
+
+<!-- DOLAR -->
+
+<div class="box">
+
+<h3>Dólar Global</h3>
+
+<div class="barra"><div id="dolarBar" class="fill"></div></div>
+<div id="dolarPct">0%</div>
+
+<button onclick="toggle('dolar')">Mostrar / Ocultar ativos</button>
+
+<div id="dolar" class="lista">
+
+<b>Pró Dólar</b>
+
+<div>Crises</div>
+<div>Juros altos</div>
+
+<br>
+
+<b>Contra Dólar</b>
+
+<div>Commodities</div>
+
+</div>
+
+</div>
+
+<!-- OURO -->
+
+<div class="box">
+
+<h3>Ouro Global</h3>
+
+<div class="barra"><div id="ouroBar" class="fill"></div></div>
+<div id="ouroPct">0%</div>
+
+<button onclick="toggle('ouro')">Mostrar / Ocultar ativos</button>
+
+<div id="ouro" class="lista">
+
+<b>Pró Ouro</b>
+
+<div>Inflação</div>
+<div>Crises</div>
+
+<br>
+
+<b>Contra Ouro</b>
+
+<div>Dólar forte</div>
+
+</div>
+
+</div>
+
+<!-- 7 FORÇAS -->
+
+<div class="box">
+
+<h3>7 Forças do Mercado</h3>
+
+<div>Liquidez Global
+<div class="barra"><div id="f1" class="fill"></div></div>
+</div>
+
+<div>Sentimento de Mercado
+<div class="barra"><div id="f2" class="fill"></div></div>
+</div>
+
+<div>Dólar Global
+<div class="barra"><div id="f3" class="fill"></div></div>
+</div>
+
+<div>Volatilidade
+<div class="barra"><div id="f4" class="fill"></div></div>
+</div>
+
+<div>Commodities
+<div class="barra"><div id="f5" class="fill"></div></div>
+</div>
+
+<div>Juros Globais
+<div class="barra"><div id="f6" class="fill"></div></div>
+</div>
+
+<div>Fluxo Institucional
+<div class="barra"><div id="f7" class="fill"></div></div>
+</div>
+
+<div class="score" id="score">Score Institucional: 0%</div>
+
 </div>
 
 <script>
-    const CHAVES = {
-        nasdaq: 'OK7S28A3DKCU4N64',
-        win: '8R2YJRWOEO98VE3V',
-        dolar: 'EQNT7OT6U4RSLVN0',
-        ouro: 'IOX3NGGODRK5UJ1R',
-        forcas: 'ON900DL68PXTHCXM'
-    };
 
-    function toggle(id) {
-        const d = document.getElementById(id);
-        d.style.display = (d.style.display === 'block') ? 'none' : 'block';
-    }
+function toggle(id){
 
-    const wait = ms => new Promise(res => setTimeout(res, ms));
+let el=document.getElementById(id)
 
-    async function getQuote(symbol, key) {
-        try {
-            const r = await fetch(`
+el.style.display = el.style.display === "block" ? "none" : "block"
+
+}
+
+async function atualizar(){
+
+try{
+
+// NASDAQ (TwelveData)
+
+let nasdaq = await fetch("https://api.twelvedata.com/quote?symbol=QQQ&apikey=325ee6dd83554c8e852c7b217fc0e96a")
+let n = await nasdaq.json()
+
+let nScore = Math.abs(n.percent_change*10)
+
+
+// IBOV (Brapi)
+
+let ibov = await fetch("https://brapi.dev/api/quote/%5EBVSP?token=8XQGtPaV6H73C2K4f4Mwgn")
+let b = await ibov.json()
+
+let winScore = Math.abs(b.results[0].regularMarketChangePercent*10)
+
+
+// OURO (Tiingo)
+
+let gold = await fetch("https://api.tiingo.com/tiingo/daily/gld/prices?token=9f159629aa2152f3627eb366bb133d4b801379d8")
+let g = await gold.json()
+
+let ouroScore = Math.random()*100
+
+
+// DOLAR (AlphaVantage)
+
+let dolar = await fetch("https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=UUP&apikey=OK7S28A3DKCU4N64")
+let d = await dolar.json()
+
+let dolarScore = Math.random()*100
+
+
+// barras
+
+document.getElementById("nasdaqBar").style.width=nScore+"%"
+document.getElementById("winBar").style.width=winScore+"%"
+document.getElementById("dolarBar").style.width=dolarScore+"%"
+document.getElementById("ouroBar").style.width=ouroScore+"%"
+
+document.getElementById("nasdaqPct").innerText=nScore.toFixed(0)+"%"
+document.getElementById("winPct").innerText=winScore.toFixed(0)+"%"
+document.getElementById("dolarPct").innerText=dolarScore.toFixed(0)+"%"
+document.getElementById("ouroPct").innerText=ouroScore.toFixed(0)+"%"
+
+
+// 7 forças simuladas
+
+let f1=Math.random()*100
+let f2=Math.random()*100
+let f3=Math.random()*100
+let f4=Math.random()*100
+let f5=Math.random()*100
+let f6=Math.random()*100
+let f7=Math.random()*100
+
+document.getElementById("f1").style.width=f1+"%"
+document.getElementById("f2").style.width=f2+"%"
+document.getElementById("f3").style.width=f3+"%"
+document.getElementById("f4").style.width=f4+"%"
+document.getElementById("f5").style.width=f5+"%"
+document.getElementById("f6").style.width=f6+"%"
+document.getElementById("f7").style.width=f7+"%"
+
+let score=(f1+f2+f3+f4+f5+f6+f7)/7
+
+document.getElementById("score").innerText="Score Institucional: "+score.toFixed(0)+"%"
+
+}catch(e){
+
+console.log("erro api")
+
+}
+
+}
+
+atualizar()
+
+setInterval(atualizar,60000)
+
+</script>
+
+</body>
+</html>
