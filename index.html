@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
-<title>Radar Institucional</title>
+<title>Radar Institucional de Mercados</title>
 
 <style>
 
@@ -86,7 +86,6 @@ line-height:1.6;
 .down{color:#ef4444;}
 
 </style>
-
 </head>
 
 <body>
@@ -95,23 +94,25 @@ line-height:1.6;
 
 <div class="grid">
 
+<!-- NASDAQ -->
+
 <div class="card">
 
 <div class="titulo">NASDAQ</div>
 
 A (PRO)
 <div class="barra">
-<div class="pro" id="barraPro">0%</div>
+<div class="pro" id="barraProNasdaq">0%</div>
 </div>
 
 B (CONTRA)
 <div class="barra">
-<div class="contra" id="barraContra">0%</div>
+<div class="contra" id="barraContraNasdaq">0%</div>
 </div>
 
-<button onclick="mostrar()">Mostrar ativos</button>
+<button onclick="mostrarNasdaq()">Mostrar ativos</button>
 
-<div class="ativos" id="ativos">
+<div class="ativos" id="ativosNasdaq">
 
 <div id="nvda"></div>
 <div id="aapl"></div>
@@ -128,58 +129,85 @@ B (CONTRA)
 
 </div>
 
+
+<!-- WIN FUTURO -->
+
+<div class="card">
+
+<div class="titulo">WIN FUTURO</div>
+
+A (PRO)
+<div class="barra">
+<div class="pro" id="barraProWin">0%</div>
+</div>
+
+B (CONTRA)
+<div class="barra">
+<div class="contra" id="barraContraWin">0%</div>
+</div>
+
+<button onclick="mostrarWin()">Mostrar ativos</button>
+
+<div class="ativos" id="ativosWin">
+
+<div id="vale"></div>
+<div id="petr"></div>
+<div id="itub"></div>
+<div id="bbdc"></div>
+
+<br>
+
+<div id="dolar"></div>
+<div id="vixbr"></div>
+<div id="us10y"></div>
+
+</div>
+
+</div>
+
 </div>
 
 <script>
-
-function mostrar(){
-
-var el=document.getElementById("ativos")
-
-if(el.style.display=="block")
-el.style.display="none"
-else
-el.style.display="block"
-
-}
-
-function gerar(){
 
 function rnd(){
 return (Math.random()*2-1).toFixed(2)
 }
 
-let nvda=rnd()
-let aapl=rnd()
-let msft=rnd()
-let btc=rnd()
-let dxy=rnd()
-let vix=rnd()
-let gold=rnd()
-
-function pintar(id,val){
+function pintar(id,nome,val){
 
 let el=document.getElementById(id)
 
 let classe=val>=0?"up":"down"
 
-el.innerHTML=id.toUpperCase()+" "+(val>0?"+":"")+val+"%"
+el.innerHTML=nome+" "+(val>0?"+":"")+val+"%"
 el.className=classe
 
 }
 
-pintar("nvda",nvda)
-pintar("aapl",aapl)
-pintar("msft",msft)
-pintar("btc",btc)
-pintar("dxy",dxy)
-pintar("vix",vix)
-pintar("gold",gold)
+function gerarNasdaq(){
+
+let nvda=rnd()
+let aapl=rnd()
+let msft=rnd()
+let btc=rnd()
+
+let dxy=rnd()
+let vix=rnd()
+let gold=rnd()
+
+pintar("nvda","NVDA",nvda)
+pintar("aapl","AAPL",aapl)
+pintar("msft","MSFT",msft)
+pintar("btc","BTC",btc)
+
+pintar("dxy","DXY",dxy)
+pintar("vix","VIX",vix)
+pintar("gold","GOLD",gold)
+
+let lista=[nvda,aapl,msft,btc]
 
 let pro=0
 let contra=0
-
-let lista=[nvda,aapl,msft,btc]
 
 lista.forEach(v=>{
 if(v>0)pro++
@@ -191,8 +219,8 @@ let total=pro+contra
 let p1=Math.round(pro/total*100)
 let p2=100-p1
 
-let barraPro=document.getElementById("barraPro")
-let barraContra=document.getElementById("barraContra")
+let barraPro=document.getElementById("barraProNasdaq")
+let barraContra=document.getElementById("barraContraNasdaq")
 
 barraPro.style.width=p1+"%"
 barraPro.innerHTML=p1+"%"
@@ -202,9 +230,78 @@ barraContra.innerHTML=p2+"%"
 
 }
 
-gerar()
+function gerarWin(){
 
-setInterval(gerar,15000)
+let vale=rnd()
+let petr=rnd()
+let itub=rnd()
+let bbdc=rnd()
+
+let dolar=rnd()
+let vix=rnd()
+let us10y=rnd()
+
+pintar("vale","VALE3",vale)
+pintar("petr","PETR4",petr)
+pintar("itub","ITUB4",itub)
+pintar("bbdc","BBDC4",bbdc)
+
+pintar("dolar","USD/BRL",dolar)
+pintar("vixbr","VIX",vix)
+pintar("us10y","US10Y",us10y)
+
+let lista=[vale,petr,itub,bbdc]
+
+let pro=0
+let contra=0
+
+lista.forEach(v=>{
+if(v>0)pro++
+else contra++
+})
+
+let total=pro+contra
+
+let p1=Math.round(pro/total*100)
+let p2=100-p1
+
+let barraPro=document.getElementById("barraProWin")
+let barraContra=document.getElementById("barraContraWin")
+
+barraPro.style.width=p1+"%"
+barraPro.innerHTML=p1+"%"
+
+barraContra.style.width=p2+"%"
+barraContra.innerHTML=p2+"%"
+
+}
+
+function atualizarRadar(){
+
+gerarNasdaq()
+gerarWin()
+
+}
+
+function mostrarNasdaq(){
+
+let el=document.getElementById("ativosNasdaq")
+
+el.style.display = el.style.display=="block" ? "none":"block"
+
+}
+
+function mostrarWin(){
+
+let el=document.getElementById("ativosWin")
+
+el.style.display = el.style.display=="block" ? "none":"block"
+
+}
+
+atualizarRadar()
+
+setInterval(atualizarRadar,15000)
 
 </script>
 
