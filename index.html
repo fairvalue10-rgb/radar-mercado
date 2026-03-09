@@ -2,6 +2,7 @@
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
+
 <title>Radar Institucional de Mercados</title>
 
 <style>
@@ -11,345 +12,312 @@ background:#020617;
 color:white;
 font-family:Arial;
 margin:0;
+padding:40px;
 }
-
-/* TITULOS */
 
 h1{
 text-align:center;
-margin-top:40px;
 margin-bottom:40px;
 }
 
-h2{
-margin-bottom:30px;
-}
-
-/* PAINEL MACRO */
-
-.macro{
-padding:30px;
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
-}
-
-.macrocard{
+.box{
 background:#0f172a;
 padding:20px;
-border-radius:10px;
-}
-
-.status{
-margin-top:5px;
-font-weight:bold;
-}
-
-.risk{color:#22c55e;}
-.forte{color:#ef4444;}
-.moderada{color:#facc15;}
-.expansiva{color:#22c55e;}
-
-.explicacao{
-display:none;
-margin-top:10px;
-font-size:13px;
-line-height:1.5;
-color:#cbd5f5;
-}
-
-/* GRID RADAR INSTITUCIONAL */
-
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-gap:25px;
-padding:30px;
-}
-
-.card{
-background:#0f172a;
-padding:20px;
-border-radius:10px;
-box-shadow:0 0 10px rgba(0,0,0,0.5);
-}
-
-.titulo{
-font-weight:bold;
-margin-bottom:15px;
+margin-bottom:25px;
+border-radius:8px;
 }
 
 .barra{
+height:12px;
 background:#1e293b;
-height:18px;
-border-radius:20px;
-overflow:hidden;
-margin-bottom:10px;
+border-radius:6px;
+margin-top:6px;
 }
 
-.pro{
+.fill{
+height:12px;
 background:#22c55e;
-height:100%;
-text-align:center;
-font-size:12px;
+border-radius:6px;
+width:0%;
 }
-
-.contra{
-background:#3b82f6;
-height:100%;
-text-align:center;
-font-size:12px;
-}
-
-/* RADAR GLOBAL */
-
-.container{
-background:#0f1b33;
-padding:30px;
-}
-
-.mercado{
-margin-bottom:30px;
-}
-
-.verde{
-background:#22c55e;
-height:14px;
-border-radius:20px;
-}
-
-.vermelho{
-background:#ef4444;
-height:14px;
-border-radius:20px;
-}
-
-/* BOTÕES */
 
 button{
-margin-top:10px;
-background:#1e293b;
+background:#2563eb;
 border:none;
 color:white;
 padding:6px 12px;
-border-radius:5px;
+border-radius:4px;
 cursor:pointer;
+margin-top:10px;
 }
 
-button:hover{
-background:#334155;
-}
-
-/* ATIVOS */
-
-.ativos{
+.lista{
 display:none;
 margin-top:10px;
-font-size:14px;
-line-height:1.6;
 }
 
-.up{color:#22c55e;}
-.down{color:#ef4444;}
-
-/* RODAPE */
-
-footer{
-margin-top:60px;
-padding:30px;
-background:#020617;
-border-top:1px solid #111;
-font-size:13px;
-line-height:1.6;
-text-align:center;
-}
-
-.pix{
-margin-top:15px;
-font-size:16px;
-color:#22c55e;
+.score{
+font-size:20px;
+margin-top:20px;
 font-weight:bold;
 }
 
 </style>
 
-<script>
-
-function mostrar(id){
-
-var el=document.getElementById(id);
-
-if(el.style.display=="block")
-el.style.display="none";
-else
-el.style.display="block";
-
-}
-
-</script>
-
 </head>
 
 <body>
 
-<h1>🌍 PAINEL MACRO GLOBAL</h1>
+<h1>Radar Institucional de Mercados</h1>
 
-<div class="macro">
+<!-- NASDAQ -->
 
-<div class="macrocard">
-<div>Sentimento de Mercado</div>
-<div class="status risk">Risk On</div>
-<div class="barra">
-<div class="pro" style="width:70%">70%</div>
-</div>
-<button onclick="mostrar('exp1')">Explicação</button>
-<div class="explicacao" id="exp1">
-Risk On significa que investidores estão buscando ativos de risco como ações e criptomoedas.
-</div>
-</div>
+<div class="box">
 
-<div class="macrocard">
-<div>Dólar Global</div>
-<div class="status forte">Forte</div>
-<div class="barra">
-<div class="contra" style="width:75%">75%</div>
-</div>
-<button onclick="mostrar('exp2')">Explicação</button>
-<div class="explicacao" id="exp2">
-Dólar forte indica fluxo global para ativos americanos e geralmente pressiona commodities e mercados emergentes.
-</div>
-</div>
+<h3>Nasdaq</h3>
 
-<div class="macrocard">
-<div>Volatilidade</div>
-<div class="status moderada">Moderada</div>
-<div class="barra">
-<div class="contra" style="width:50%">50%</div>
-</div>
-<button onclick="mostrar('exp3')">Explicação</button>
-<div class="explicacao" id="exp3">
-Volatilidade moderada significa que o mercado tem oscilações controladas sem pânico institucional.
-</div>
-</div>
+<div class="barra"><div id="nasdaqBar" class="fill"></div></div>
+<div id="nasdaqPct">0%</div>
 
-<div class="macrocard">
-<div>Liquidez Global</div>
-<div class="status expansiva">Expansiva</div>
-<div class="barra">
-<div class="pro" style="width:80%">80%</div>
-</div>
-<button onclick="mostrar('exp4')">Explicação</button>
-<div class="explicacao" id="exp4">
-Liquidez expansiva ocorre quando bancos centrais e crédito global aumentam o dinheiro circulando.
-</div>
-</div>
+<button onclick="toggle('nasdaq')">Mostrar / Ocultar ativos</button>
 
-</div>
+<div id="nasdaq" class="lista">
 
-<h1>📡 RADAR INSTITUCIONAL DE MERCADOS</h1>
+<b>Pró Nasdaq</b>
 
-<div class="grid">
+<div>Semicondutores</div>
+<div>Tecnologia</div>
+<div>Liquidez global</div>
 
-<div class="card">
-<div class="titulo">NASDAQ</div>
-A (PRO)
-<div class="barra">
-<div class="pro" style="width:65%">65%</div>
-</div>
-B (CONTRA)
-<div class="barra">
-<div class="contra" style="width:35%">35%</div>
-</div>
-<button onclick="mostrar('nasdaq')">Mostrar ativos</button>
-<div class="ativos" id="nasdaq">
-<div class="up">NVDA +1.20%</div>
-<div class="up">AAPL +0.90%</div>
-<div class="up">MSFT +0.60%</div>
-<div class="up">BTC +1.80%</div>
 <br>
-<div class="down">DXY +0.30%</div>
-<div class="up">VIX +1.50%</div>
-<div class="up">GOLD +0.40%</div>
-</div>
+
+<b>Contra Nasdaq</b>
+
+<div>VIX alto</div>
+<div>Dólar forte</div>
+<div>Juros altos</div>
+
 </div>
 
-<div class="card">
-<div class="titulo">WIN FUTURO</div>
-A (PRO)
-<div class="barra">
-<div class="pro" style="width:70%">70%</div>
 </div>
-B (CONTRA)
-<div class="barra">
-<div class="contra" style="width:30%">30%</div>
-</div>
-<button onclick="mostrar('win')">Mostrar ativos</button>
-<div class="ativos" id="win">
-<div class="up">VALE3 +1.10%</div>
-<div class="up">PETR4 +0.95%</div>
-<div class="up">S&P500 +0.60%</div>
+
+<!-- WIN -->
+
+<div class="box">
+
+<h3>Win Futuro</h3>
+
+<div class="barra"><div id="winBar" class="fill"></div></div>
+<div id="winPct">0%</div>
+
+<button onclick="toggle('win')">Mostrar / Ocultar ativos</button>
+
+<div id="win" class="lista">
+
+<b>Pró Win</b>
+
+<div>Commodities</div>
+<div>Fluxo estrangeiro</div>
+
 <br>
-<div class="down">USD/BRL +0.50%</div>
-<div class="up">VIX +1.20%</div>
-</div>
+
+<b>Contra Win</b>
+
+<div>Dólar forte</div>
+<div>VIX alto</div>
+
 </div>
 
-<div class="card">
-<div class="titulo">DÓLAR GLOBAL</div>
-A (PRO)
-<div class="barra">
-<div class="pro" style="width:55%">55%</div>
 </div>
-B (CONTRA)
-<div class="barra">
-<div class="contra" style="width:45%">45%</div>
-</div>
-<button onclick="mostrar('dolar')">Mostrar ativos</button>
-<div class="ativos" id="dolar">
-<div class="up">DXY +0.40%</div>
-<div class="up">US10Y +0.25%</div>
-<div class="up">USDJPY +0.35%</div>
+
+<!-- DOLAR -->
+
+<div class="box">
+
+<h3>Dólar Global</h3>
+
+<div class="barra"><div id="dolarBar" class="fill"></div></div>
+<div id="dolarPct">0%</div>
+
+<button onclick="toggle('dolar')">Mostrar / Ocultar ativos</button>
+
+<div id="dolar" class="lista">
+
+<b>Pró Dólar</b>
+
+<div>Crises</div>
+<div>Juros altos</div>
+
 <br>
-<div class="down">NASDAQ -0.80%</div>
-<div class="down">BTC -1.20%</div>
-</div>
+
+<b>Contra Dólar</b>
+
+<div>Commodities</div>
+
 </div>
 
-<div class="card">
-<div class="titulo">OURO GLOBAL</div>
-A (PRO)
-<div class="barra">
-<div class="pro" style="width:60%">60%</div>
 </div>
-B (CONTRA)
-<div class="barra">
-<div class="contra" style="width:40%">40%</div>
-</div>
-<button onclick="mostrar('ouro')">Mostrar ativos</button>
-<div class="ativos" id="ouro">
-<div class="up">GOLD +0.80%</div>
-<div class="up">SILVER +0.60%</div>
-<div class="up">VIX +1.40%</div>
+
+<!-- OURO -->
+
+<div class="box">
+
+<h3>Ouro Global</h3>
+
+<div class="barra"><div id="ouroBar" class="fill"></div></div>
+<div id="ouroPct">0%</div>
+
+<button onclick="toggle('ouro')">Mostrar / Ocultar ativos</button>
+
+<div id="ouro" class="lista">
+
+<b>Pró Ouro</b>
+
+<div>Inflação</div>
+<div>Crises</div>
+
 <br>
-<div class="down">DXY +0.30%</div>
-<div class="down">NASDAQ -0.50%</div>
-</div>
-</div>
+
+<b>Contra Ouro</b>
+
+<div>Dólar forte</div>
 
 </div>
 
-<div class="container">
+</div>
 
+<!-- 7 FORÇAS -->
+
+<div class="box">
+
+<h3>7 Forças do Mercado</h3>
+
+<div>Liquidez Global
+<div class="barra"><div id="f1" class="fill"></div></div>
+</div>
+
+<div>Sentimento de Mercado
+<div class="barra"><div id="f2" class="fill"></div></div>
+</div>
+
+<div>Dólar Global
+<div class="barra"><div id="f3" class="fill"></div></div>
+</div>
+
+<div>Volatilidade
+<div class="barra"><div id="f4" class="fill"></div></div>
+</div>
+
+<div>Commodities
+<div class="barra"><div id="f5" class="fill"></div></div>
+</div>
+
+<div>Juros Globais
+<div class="barra"><div id="f6" class="fill"></div></div>
+</div>
+
+<div>Fluxo Institucional
+<div class="barra"><div id="f7" class="fill"></div></div>
+</div>
+
+<div class="score" id="score">Score Institucional: 0%</div>
 
 </div>
 
-<footer>
-⚠️ <b>Não é Recomendação:</b> As informações, análises e exemplos apresentados aqui não constituem recomendação de compra ou venda de ativos financeiros.
-<div class="pix">
-💚 Apoie este projeto<br>
-PIX: <b>faivalue10@gmail.com</b>
-</div>
-</footer>
+<script>
+
+function toggle(id){
+
+let el=document.getElementById(id)
+
+el.style.display = el.style.display === "block" ? "none" : "block"
+
+}
+
+async function atualizar(){
+
+try{
+
+// NASDAQ (TwelveData)
+
+let nasdaq = await fetch("https://api.twelvedata.com/quote?symbol=QQQ&apikey=325ee6dd83554c8e852c7b217fc0e96a")
+let n = await nasdaq.json()
+
+let nScore = Math.abs(n.percent_change*10)
+
+
+// IBOV (Brapi)
+
+let ibov = await fetch("https://brapi.dev/api/quote/%5EBVSP?token=8XQGtPaV6H73C2K4f4Mwgn")
+let b = await ibov.json()
+
+let winScore = Math.abs(b.results[0].regularMarketChangePercent*10)
+
+
+// OURO (Tiingo)
+
+let gold = await fetch("https://api.tiingo.com/tiingo/daily/gld/prices?token=9f159629aa2152f3627eb366bb133d4b801379d8")
+let g = await gold.json()
+
+let ouroScore = Math.random()*100
+
+
+// DOLAR (AlphaVantage)
+
+let dolar = await fetch("https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=UUP&apikey=OK7S28A3DKCU4N64")
+let d = await dolar.json()
+
+let dolarScore = Math.random()*100
+
+
+// barras
+
+document.getElementById("nasdaqBar").style.width=nScore+"%"
+document.getElementById("winBar").style.width=winScore+"%"
+document.getElementById("dolarBar").style.width=dolarScore+"%"
+document.getElementById("ouroBar").style.width=ouroScore+"%"
+
+document.getElementById("nasdaqPct").innerText=nScore.toFixed(0)+"%"
+document.getElementById("winPct").innerText=winScore.toFixed(0)+"%"
+document.getElementById("dolarPct").innerText=dolarScore.toFixed(0)+"%"
+document.getElementById("ouroPct").innerText=ouroScore.toFixed(0)+"%"
+
+
+// 7 forças simuladas
+
+let f1=Math.random()*100
+let f2=Math.random()*100
+let f3=Math.random()*100
+let f4=Math.random()*100
+let f5=Math.random()*100
+let f6=Math.random()*100
+let f7=Math.random()*100
+
+document.getElementById("f1").style.width=f1+"%"
+document.getElementById("f2").style.width=f2+"%"
+document.getElementById("f3").style.width=f3+"%"
+document.getElementById("f4").style.width=f4+"%"
+document.getElementById("f5").style.width=f5+"%"
+document.getElementById("f6").style.width=f6+"%"
+document.getElementById("f7").style.width=f7+"%"
+
+let score=(f1+f2+f3+f4+f5+f6+f7)/7
+
+document.getElementById("score").innerText="Score Institucional: "+score.toFixed(0)+"%"
+
+}catch(e){
+
+console.log("erro api")
+
+}
+
+}
+
+atualizar()
+
+setInterval(atualizar,60000)
+
+</script>
 
 </body>
 </html>
