@@ -1,3 +1,104 @@
+<div class="card" style="background:#0f172a; padding:20px; border-radius:10px; border:1px solid #1e293b; color:white; font-family:Arial; max-width:400px; margin:auto;">
+    <div style="font-weight:bold; margin-bottom:15px; color:#3b82f6; text-align:center; font-size:16px;">📡 NASDAQ (MNQH) INSTITUCIONAL</div>
+    
+    <div style="font-size:11px; margin-bottom:5px; color:#94a3b8;">A (PRO) - Força das Big Techs</div>
+    <div style="background:#1e293b; height:22px; border-radius:5px; overflow:hidden; margin-bottom:15px; border:1px solid #334155;">
+        <div id="barra-pro" style="background:#22c55e; height:100%; width:50%; text-align:center; font-size:12px; line-height:22px; color:black; font-weight:bold; transition:1s;">50% PRO</div>
+    </div>
+    
+    <div style="font-size:11px; margin-bottom:5px; color:#94a3b8;">B (CONTRA) - Pressão Dólar/VIX</div>
+    <div style="background:#1e293b; height:22px; border-radius:5px; overflow:hidden; margin-bottom:12px; border:1px solid #334155;">
+        <div id="barra-contra" style="background:#3b82f6; height:100%; width:50%; text-align:center; font-size:12px; line-height:22px; color:white; font-weight:bold; transition:1s;">50% CONTRA</div>
+    </div>
+
+    <div style="text-align: center;">
+        <button type="button" onclick="toggleAtivos()" style="background:#334155; color:white; border:none; padding:8px 15px; border-radius:5px; cursor:pointer; font-size:11px; width:100%;">
+            🔍 MOSTRAR ATIVOS DA COMPOSIÇÃO
+        </button>
+    </div>
+
+    <div id="lista-ativos" style="display:none; margin-top:15px; padding:12px; background:#020617; border:1px dashed #334155; border-radius:5px;">
+        <div style="display:flex; justify-content:space-between; font-size:11px;">
+            <div style="color:#22c55e;">
+                <b>[PRO]</b><br>
+                AAPL: <span id="val-aapl">...</span><br>
+                MSFT: <span id="val-msft">...</span><br>
+                NVDA: <span id="val-nvda">...</span>
+            </div>
+            <div style="color:#3b82f6; text-align:right;">
+                <b>[CONTRA]</b><br>
+                Dólar: <span id="val-dxy">...</span><br>
+                VIX: <span id="val-vix">...</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="status-api" style="font-size:9px; color:#4ade80; text-align:center; margin-top:10px; font-style:italic;">Iniciando sistema...</div>
+</div>
+
+<script>
+// FUNÇÃO DO BOTÃO (ABRIR/FECHAR)
+function toggleAtivos() {
+    var lista = document.getElementById("lista-ativos");
+    if (lista.style.display === "none" || lista.style.display === "") {
+        lista.style.display = "block";
+    } else {
+        lista.style.display = "none";
+    }
+}
+
+const MINHA_CHAVE = 'OK7S28A3DKCU4N64';
+
+async function obterDados(ticker) {
+    try {
+        const url = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${ticker}&apikey=${MINHA_CHAVE}`;
+        const res = await fetch(url);
+        const data = await res.json();
+        const info = data["Global Quote"];
+        return info ? parseFloat(info["10. change percent"].replace('%', '')) : 0;
+    } catch (e) { return 0; }
+}
+
+async function atualizarRadar() {
+    document.getElementById('status-api').innerText = "Buscando dados na NYSE/NASDAQ...";
+
+    // Coleta as variações (Respeitando o limite da API free)
+    const varAAPL = await obterDados('AAPL');
+    const varMSFT = await obterDados('MSFT');
+    const varNVDA = await obterDados('NVDA');
+    const varDXY = await obterDados('DX-Y');
+    const varVIX = await obterDados('VIX');
+
+    // Atualiza os textos
+    document.getElementById('val-aapl').innerText = varAAPL.toFixed(2) + "%";
+    document.getElementById('val-msft').innerText = varMSFT.toFixed(2) + "%";
+    document.getElementById('val-nvda').innerText = varNVDA.toFixed(2) + "%";
+    document.getElementById('val-dxy').innerText = varDXY.toFixed(2) + "%";
+    document.getElementById('val-vix').innerText = varVIX.toFixed(2) + "%";
+
+    // Cálculo do Score (Sensibilidade 15 para MNQH)
+    let mediaPro = (varAAPL + varMSFT + varNVDA) / 3;
+    let mediaContra = (varDXY + varVIX) / 2;
+
+    let scorePro = Math.max(5, Math.min(95, 50 + (mediaPro * 15)));
+    let scoreContra = Math.max(5, Math.min(95, 50 + (mediaContra * 15)));
+
+    // Aplica nas Barras
+    document.getElementById('barra-pro').style.width = scorePro.toFixed(0) + '%';
+    document.getElementById('barra-pro').innerText = scorePro.toFixed(0) + '% PRO';
+    
+    document.getElementById('barra-contra').style.width = scoreContra.toFixed(0) + '%';
+    document.getElementById('barra-contra').innerText = scoreContra.toFixed(0) + '% CONTRA';
+
+    document.getElementById('status-api').innerText = "Último sinal: " + new Date().toLocaleTimeString();
+}
+
+// Inicia o Radar
+atualizarRadar();
+// Atualiza a cada 3 minutos para não bloquear sua chave Alpha Vantage Free
+setInterval(atualizarRadar, 180000); 
+</script>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -428,3 +529,4 @@ PIX: <b>faivalue10@gmail.com</b>
 
 </body>
 </html>
+
